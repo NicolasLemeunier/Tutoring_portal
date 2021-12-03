@@ -26,6 +26,12 @@ class Controller{
 	}
 
 	public function accountCreation(array $data){
+
+		if(empty(trim(htmlspecialchars($data['Login']))) || empty(trim(htmlspecialchars($data['Password'])))){
+			$this->view->accountCreationPage();
+			return false;
+		}
+
 		if(array_key_exists($data['Login'], $this->storage->readAllAccounts()))
 			$this->view->accountCreationPage();
 		else{
@@ -36,6 +42,7 @@ class Controller{
 			$array = array('Login' => htmlspecialchars($data['Login']), 'Password' => htmlspecialchars($data['Password']));
 
 			$this->connection($array);
+			return true;
 		}
 	}
 
