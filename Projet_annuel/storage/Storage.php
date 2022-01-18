@@ -27,6 +27,14 @@ class Storage{
 
 		return $lines;
 	}
+
+	public function readAllTutoring(){
+		$stmt = $this->PDO->query("SELECT category, tutor FROM tutoring_website_tutorList");
+
+		$lines = $stmt->fetchAll();
+
+		return $lines;
+	}
 }
 
 ?>

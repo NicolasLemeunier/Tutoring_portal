@@ -31,13 +31,16 @@ class Router{
 			$this->controller->accountCreation($_POST);
 		else if(array_key_exists("disconnection", $_GET))
 			$this->controller->disconnection();
+		else if(array_key_exists("admin", $_GET))
+			$this->view->adminPage();
 		else
-			$this->view->welcomePage();	
+			$this->controller->tutoringList();	
 	}
 
 	public function getConnectionPageURL(){
 		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?connection";
 	}
+
 	public function getConnectionURL(){
 		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?connection_A";
 	}
@@ -56,6 +59,10 @@ class Router{
 
 	public function getDisconnectionURL(){
 		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?disconnection";
+	}
+
+	public function getAdminPageURL(){
+		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?admin";
 	}
 
 	public function POSTredirect($url){

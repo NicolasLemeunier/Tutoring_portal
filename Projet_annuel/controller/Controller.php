@@ -51,6 +51,12 @@ class Controller{
 
 		$this->view->success();
 	}
+
+	public function tutoringList(){
+		$data = $this->storage->readAllTutoring();
+
+		$this->view->welcomePage($data);
+	}
 }
 
 ?>
