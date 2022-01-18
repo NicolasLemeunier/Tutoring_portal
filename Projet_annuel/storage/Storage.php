@@ -35,6 +35,14 @@ class Storage{
 
 		return $lines;
 	}
+
+	public function research(string $word){
+		$stmt = $this->PDO->query("SELECT category, tutor FROM tutoring_website_tutorList WHERE category LIKE \"$word%\"");
+
+		$lines = $stmt->fetchAll();
+
+		return $lines;
+	}
 }
 
 ?>

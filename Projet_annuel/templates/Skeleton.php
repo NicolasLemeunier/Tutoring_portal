@@ -7,7 +7,8 @@
 	</head>
 	<body>
 		<?php include("Menu.php"); ?>
-
-		<?php echo $this->content; ?>
+		<main>
+			<?php echo $this->content; ?>
+		</main>
 	</body>
 </html>

@@ -33,6 +33,8 @@ class Router{
 			$this->controller->disconnection();
 		else if(array_key_exists("admin", $_GET))
 			$this->view->adminPage();
+		else if(array_key_exists("search", $_GET))
+			$this->controller->research($_POST['Tutorat_research']);
 		else
 			$this->controller->tutoringList();	
 	}
@@ -63,6 +65,18 @@ class Router{
 
 	public function getAdminPageURL(){
 		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?admin";
+	}
+
+	public function getTutoringListPageURL(){
+		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tutoringList";
+	}
+
+	public function getTutoringCreationPageURL(){
+		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tutoringCreation";
+	}
+
+	public function getResearchURL(){
+		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?search";
 	}
 
 	public function POSTredirect($url){

@@ -57,6 +57,12 @@ class Controller{
 
 		$this->view->welcomePage($data);
 	}
+
+	public function research(string $word){
+		$tutoringList = $this->storage->readAllTutoring();
+
+		$this->view->welcomePage($this->storage->research($word));
+	}
 }
 
 ?>
