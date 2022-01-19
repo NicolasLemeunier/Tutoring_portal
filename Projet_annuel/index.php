@@ -1,5 +1,7 @@
 <?php
 
+set_include_path("./src");
+
 require_once("Router.php");
 //require_once('/users/21914622/private/mysql_config.php');
 require_once('/users/21904876/private/mysql_config.php');
@@ -13,10 +15,10 @@ require_once("controller/Controller.php");
 try {
 
 
-  $string = MYSQL_HOST . ";" . "dbname=" . MYSQL_DB . ";" . "charset=utf8";
+  $dsn = MYSQL_HOST . ";" . "dbname=" . MYSQL_DB . ";" . "charset=utf8";
 
   $router = new Router();
-  $router->main(new Storage(new PDO($string, MYSQL_USER, MYSQL_PASSWORD)));
+  $router->main(new Storage(new PDO($dsn, MYSQL_USER, MYSQL_PASSWORD)));
 
 } catch (\Exception $e) {
   echo $e;
