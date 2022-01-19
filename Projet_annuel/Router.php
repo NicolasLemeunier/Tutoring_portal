@@ -35,6 +35,8 @@ class Router{
 			$this->view->adminPage();
 		else if(array_key_exists("search", $_GET))
 			$this->controller->research($_POST['Tutorat_research']);
+		else if(array_key_exists("tutoringCreation", $_GET))
+			$this->view->tutoringCreationPage();
 		else
 			$this->controller->tutoringList();	
 	}
@@ -77,6 +79,10 @@ class Router{
 
 	public function getResearchURL(){
 		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?search";
+	}
+
+	public function getTutoringPageURL(){
+		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tu";
 	}
 
 	public function POSTredirect($url){

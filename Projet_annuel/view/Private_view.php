@@ -29,9 +29,9 @@ class Private_view extends View{
 
 		foreach($data as $tu){
 			if(array_key_exists($tu['category'], $categories_list))
-				$categories_list[$tu['category']] .= "<tbody></tr><td>Tutorat de {$tu['tutor']}</td></tr></tbody>";
+				$categories_list[$tu['category']] .= "<tbody></tr><td><button onclick=\"tutoringPage()\">Tutorat de {$tu['tutor']}</button></td></tr></tbody>";
 			else{
-				$categories_list = $categories_list + array($tu['category'] => "<table><thead><tr><th>{$tu['category']}</th><tr></thead><tbody></tr><td>Tutorat de {$tu['tutor']}</td></tr></tbody>");
+				$categories_list = $categories_list + array($tu['category'] => "<table><thead><tr><th>{$tu['category']}</th><tr></thead><tbody></tr><td><button onclick=\"tutoringPage()\">Tutorat de {$tu['tutor']}</button></td></tr></tbody>");
 			}
 		}
 

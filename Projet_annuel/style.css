@@ -5,3 +5,11 @@ table, td{
 main{
 	display: block;
 }
+
+textarea{
+	resize: none;
+}
+
+.inputNum{
+	width: 2em;
+}
