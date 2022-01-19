@@ -1,0 +1,15 @@
+table, td{
+	border : 1px solid;
+}
+
+main{
+	display: block;
+}
+
+textarea{
+	resize: none;
+}
+
+.inputNum{
+	width: 2em;
+}
