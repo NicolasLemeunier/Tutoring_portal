@@ -1,7 +1,7 @@
 <?php
 
 class Router{
-	
+
 	private $view, $controller;
 
 	function __construct(){
@@ -13,7 +13,31 @@ class Router{
 
 		session_start();
 
-		if(array_key_exists('user', $_SESSION) && $_SESSION['user'] != null) 
+
+		//si la clé 'user' existe alors $user = $_SESSION['user'] sinon $user = null
+		$user = key_exists('user', $_SESSION)? $_SESSION['user']: null;
+
+		/*
+		Faire un switch comme ça, au lieu du if(array_key_exists('user', $_SESSION)...
+
+		$id = key_exists('id', $_GET)? $_GET['id']: null;
+	 $id_compte = key_exists('idCompte', $_GET)? $_GET['idCompte']: null;
+	 $action = key_exists('action', $_GET)? $_GET['action']: null;
+
+	 if($action == null){
+		 $action = ($id != null or $id == "0")? "voir": "accueil";
+	 }
+
+	 try {
+ switch ($action) {
+
+			 case "accueil":
+				 $vue->makeTestPage();
+			 break;
+
+			 ETC....
+		*/
+		if(array_key_exists('user', $_SESSION) && $_SESSION['user'] != null)
 			$this->view = new Private_view($this, $_SESSION['user']); //If the user is connected.
 		else
 			$this->view = new View($this); //If the user is not connected.
@@ -38,7 +62,7 @@ class Router{
 		else if(array_key_exists("tutoringCreation", $_GET))
 			$this->view->tutoringCreationPage();
 		else
-			$this->controller->tutoringList();	
+			$this->controller->tutoringList();
 	}
 
 	public function getConnectionPageURL(){
