@@ -4,7 +4,7 @@ $res = isset($_SESSION['user']) ? $_SESSION['user']->getStatus() : "Non connect√
 
 echo "<header><h1>Portail de tutorats priv√©s</h1><h2>Statut : $res </h2></header>";
 
-echo "<nav>
+echo "<nav class='menu'>
 		<ul>
 			<li><a href = {$this->router->getWelcomePageURL()}>Accueil</a></li>";
 

@@ -41,6 +41,11 @@ class View{
 		$this->render();
 	}
 
+	public function bugPage(){
+		$this->title = "Oups";
+		$this->content = "<h2>Une erreur est survenue, veuillez retournez à la page d'acceuil</h2>";
+	}
+
 
 	public function connectionPage(){
 		$this->title = "Page de connexion";
@@ -66,7 +71,7 @@ class View{
 		include("templates/Admin_page.php");
 		$this->content = ob_get_clean();
 
-		$this->render();	
+		$this->render();
 	}
 
 	public function tutoringCreationPage(){
@@ -83,7 +88,7 @@ class View{
 		ob_start();
 		include("templates/tutoring_list_page.php");
 		$this->content = ob_get_clean();
-		
+
 		$this->render();
 	}
 
@@ -92,13 +97,23 @@ class View{
 		ob_start();
 		include("templates/tutoring_information_page.php");
 		$this->content = ob_get_clean();
-		
+
 		$this->render();
 	}
 
 	public function success(){
 		$this->router->POSTredirect($this->router->getWelcomePageURL(), "Success");
 	}
-}
+
+	public function getMenu(){
+		return array(
+      			"Accueil" => $this->routeur->getWelcomePageURLage(),
+      			"Liste Tutorat" => $this->routeur->getTutoringListPageURL(),
+      			"Nouveau tutorat" => $this->routeur->getTutoringCreationPageURL(),
+            "Connexion/Déconnexion" => $this->routeur->getConnectionPageURL(),
+            "Partie Admin" => $this->routeur->getAdminPageURL(),
+      		);
+	      }
+			}
 
 ?>

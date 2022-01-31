@@ -1,7 +1,7 @@
 <?php
 
 class Router{
-	
+
 	private $view, $controller;
 
 	function __construct(){
@@ -13,13 +13,39 @@ class Router{
 
 		session_start();
 
-		if(array_key_exists('user', $_SESSION) && $_SESSION['user'] != null) 
+		if(array_key_exists('user', $_SESSION) && $_SESSION['user'] != null)
 			$this->view = new Private_view($this, $_SESSION['user']); //If the user is connected.
 		else
 			$this->view = new View($this); //If the user is not connected.
 
+		$action = key_exists('action', $_GET)? $_GET['action']: null;
+		if($action == null){
+	     $action = "accueil";
+	   }
 
 		$this->controller = new Controller($this->view, $storage);
+
+		/*
+		try {
+		 switch ($action) {
+
+			 case "accueil":
+				 $this->controller->welcomePage();
+			 break;
+			 default:
+				// L'internaute a demandé une action non prévue.
+  				$this->controller->welcomePage();
+				break;
+      }
+    } catch (Exception $e) {
+			// Si on arrive ici, il s'est passé quelque chose d'imprévu (par exemple un problème de base de données)
+
+			$this->view->bugPage();
+		}
+		$this->view->render();
+  }
+
+	*/
 
 		if(array_key_exists("connection", $_GET))
 			$this->view->connectionPage();
@@ -50,8 +76,9 @@ class Router{
 		else if(array_key_exists("register_A", $_GET))
 			$this->controller->register($_GET['tutor']);
 		else
-			$this->controller->welcomePage();	
+			$this->controller->welcomePage();
 	}
+
 
 	public function getConnectionPageURL(){
 		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?connection";
