@@ -4,7 +4,7 @@ echo "<h2>Comptes</h2>
 	<table>
 		<thead>
 			<tr>
-				<th>Category</th>
+				<th>Tutorats</th>
 			</tr>
 		</thead>
 
@@ -14,7 +14,7 @@ echo "<h2>Comptes</h2>
 		
 
 foreach ($data as $key) {
-	echo "<tr><td>{$key['login']}</td><td>{$key['status']}</td></tr>";
+	echo "<tr><td>Tutorat en {$key['category']}</td></tr>";
 }
 
 echo "</tbody>

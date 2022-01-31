@@ -98,6 +98,28 @@ class Controller{
 
 		$this->view->tutoringListPage($data);
 	}
+
+	public function tutoringCreation(array $data){
+		if(array_key_exists('user', $_SESSION)){
+			$this->storage->insertTutoring($data['Category'], $data['Description'], $data['Max_number'], $_SESSION['user']->getLogin());
+			$this->tutoringList($_SESSION['user']->getLogin());
+		}
+		else
+			$this->view->welcomePage();
+	}
+
+	public function information($catagory, $tutor){
+		$data = $this->storage->readTutoring($tutor);
+
+		$registered = $this->storage->readRegistered($tutor);
+
+		$this->view->information($catagory, $tutor, $data, $registered);
+	}
+
+	public function register($tutor){
+		$this->storage->register($_SESSION['user']->getLogin(), $tutor);
+		$this->tutoringList($tutor);
+	}
 }
 
 ?>

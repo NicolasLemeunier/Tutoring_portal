@@ -19,6 +19,30 @@ class Storage{
 		$stmt->execute($data);
 	}
 
+	public function insertTutoring($category, $description, $nbMax, $tutor){
+		$sql = "INSERT INTO tutoring_website_tutorList(category, description, nbMaxStudents, tutor) VALUES(:category, :description, :nbMaxStudents, :tutor)";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":category" => $category, ":description" => $description, ":nbMaxStudents" => $nbMax, ":tutor" => $tutor);
+
+		$stmt->execute($data);
+	}
+
+	public function readTutoring($tutor){
+		$sql = "SELECT category, description, nbMaxStudents FROM tutoring_website_tutorList WHERE tutor=:tutor";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":tutor" => $tutor);
+
+		$stmt->execute($data);
+
+		$line = $stmt->fetch();
+
+		return $line;
+	}
+
 	public function readAllAccounts(){
 		$stmt = $this->PDO->query("SELECT login, password, status FROM tutoring_website_accounts");
 
@@ -28,7 +52,7 @@ class Storage{
 	}
 
 	public function readAllTutoring(){
-		$stmt = $this->PDO->query("SELECT category, tutor FROM tutoring_website_tutorList");
+		$stmt = $this->PDO->query("SELECT category, description, nbMaxStudents, tutor FROM tutoring_website_tutorList");
 
 		$lines = $stmt->fetchAll();
 
@@ -75,6 +99,30 @@ class Storage{
 		$data = array(":login" => $login, ":status" => $status);
 
 		$stmt->execute($data);
+	}
+
+	public function register($login, $tutor){
+		$sql = "INSERT INTO tutoring_website_registered (student, tutoring) VALUES (:login, :tutor)";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":login" => $login, ":tutor" => $tutor);
+
+		$stmt->execute($data);
+	}
+
+	public function readRegistered($tutor){
+		$sql = "SELECT student FROM tutoring_website_registered WHERE tutoring=:tutor";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":tutor" => $tutor);
+
+		$stmt->execute($data);
+
+		$lines = $stmt->fetchAll();
+
+		return $lines;
 	}
 }
 

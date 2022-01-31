@@ -13,64 +13,34 @@ class View{
 		include("templates/Skeleton.php");
 	}
 
-	public function welcomePage(Array $data){
+	public function welcomePage(array $data){
 		$this->title = "Page d'accueil";
 		ob_start();
 		include("templates/Welcome_page.php");
 		$this->content = ob_get_clean() . "<br/>";
 
-	/*
-	"<div>
-  			<button class=\"w3-bar-item w3-button\" onclick=\"tabs('Maths')\">London</button>
-  <button class=\"w3-bar-item w3-button\" onclick=\"tabs('Anglais')\">Paris</button>
-  <button class=\"w3-bar-item w3-button\" onclick=\"tabs('Info')\">Tokyo</button>
-</div>
-
-<div id=\"Maths\" class=\"Tab\">
-  <h2>Maths</h2>
-  <p>Hey</p>
-</div>
-
-<div id=\"Anglais\" class=\"Tab\" style=\"display:none\">
-  <h2>Anglais</h2>
-  <p>Hey</p> 
-</div>
-
-<div id=\"Info\" class=\"Tab\" style=\"display:none\">
-  <h2>Info</h2>
-  <p>Hey</p>
-</div>
-*/
-
-	
-		$tabs = "<div><button class=\"Tab\">Test</button>";
-				
 		$categories_list = array();
+
+		$tables = "";
 
 		foreach($data as $tu){
 			if(array_key_exists($tu['category'], $categories_list))
-				$categories_list[$tu['category']] .= "<div id={$tu['category']} class=\"Tab_content\" style=\"display:none\"><h2>{$tu['category']}</h2>
-  				<p>Tutorat de {$tu['tutor']}</p>";
+				$categories_list[$tu['category']] .= "<tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['category'], $tu['tutor'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>";
 			else{
-
-				$tabs .= "<button class=\"Tab\" onclick=\"tabs(\"{$tu['category']}\")\">{$tu['category']}</button>";
-
-				$categories_list = $categories_list + array($tu['category'] => "<div id={$tu['category']} class=\"Tab_content\" style=\"display:none\"><h2>{$tu['category']}</h2>
-  				<p>Tutorat de {$tu['tutor']}</p>");
+				$categories_list = $categories_list + array($tu['category'] => "<table><thead><tr><th>{$tu['category']}</th><tr></thead><tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['category'], $tu['tutor'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>");
 			}
 		}
 
-		$tabs .= "</div>";
-
-		$this->content .= $tabs;
 
 		foreach($categories_list as $key => $value){
-			$categories_list[$key] .= "</div>";
+			$categories_list[$key] .= "</table>";
 			$this->content .= $categories_list[$key];
 		}
-	
+
+
 		$this->render();
 	}
+
 
 	public function connectionPage(){
 		$this->title = "Page de connexion";
@@ -112,6 +82,15 @@ class View{
 		$this->title = "Liste de vos tutorats";
 		ob_start();
 		include("templates/tutoring_list_page.php");
+		$this->content = ob_get_clean();
+		
+		$this->render();
+	}
+
+	public function information($category, $tutor, $data, $registered){
+		$this->title = "Page d'informations";
+		ob_start();
+		include("templates/tutoring_information_page.php");
 		$this->content = ob_get_clean();
 		
 		$this->render();

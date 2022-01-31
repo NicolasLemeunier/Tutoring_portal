@@ -43,6 +43,12 @@ class Router{
 			$this->controller->accountModifying($_GET['login'], $_GET['status']);
 		else if(array_key_exists("tutoringList", $_GET))
 			$this->controller->tutoringList($_SESSION['user']->getLogin());
+		else if(array_key_exists("tutoringCreation_A", $_GET))
+			$this->controller->tutoringCreation($_POST);
+		else if(array_key_exists("information", $_GET))
+			$this->controller->information($_GET['category'], $_GET['tutor']);
+		else if(array_key_exists("register_A", $_GET))
+			$this->controller->register($_GET['tutor']);
 		else
 			$this->controller->welcomePage();	
 	}
@@ -97,6 +103,18 @@ class Router{
 
 	public function getModifyingAccountURL($login, $status){
 		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?modify&login=$login&status=$status";
+	}
+
+	public function getTutoringCreationURL(){
+		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tutoringCreation_A";
+	}
+
+	public function getTutoringInformationPageURL($category, $tutor){
+		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?information&category=$category&tutor=$tutor";
+	}
+
+	public function getRegisterURL($tutor){
+		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?register_A&tutor=$tutor";
 	}
 
 	public function POSTredirect($url){
