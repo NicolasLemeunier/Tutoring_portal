@@ -94,9 +94,11 @@ class Controller{
 	}
 
 	public function tutoringList($tutor){
-		$data = $this->storage->readAllTutoringFromAPerson($tutor);
 
-		$this->view->tutoringListPage($data);
+			$data = $this->storage->readAllTutoringFromAPerson($tutor);
+			$this->view->tutoringListPage($data);
+	
+
 	}
 
 	public function tutoringCreation(array $data){
@@ -105,7 +107,7 @@ class Controller{
 			$this->tutoringList($_SESSION['user']->getLogin());
 		}
 		else
-			$this->view->welcomePage();
+			$this->welcomePage();
 	}
 
 	public function information($catagory, $tutor){
@@ -116,9 +118,14 @@ class Controller{
 		$this->view->information($catagory, $tutor, $data, $registered);
 	}
 
-	public function register($tutor){
-		$this->storage->register($_SESSION['user']->getLogin(), $tutor);
+	public function register($category, $tutor){
+		$this->storage->register($category, $_SESSION['user']->getLogin(), $tutor);
 		$this->tutoringList($tutor);
+	}
+
+	public function tutoringDeletion($category, $tutor){
+		$this->storage->deleteTutoring($category, $tutor);
+		$this->welcomePage();
 	}
 }
 

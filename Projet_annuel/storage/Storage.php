@@ -91,6 +91,16 @@ class Storage{
 		$stmt->execute($data);
 	}
 
+	public function deleteTutoring($category, $tutor){
+		$sql = "DELETE FROM tutoring_website_tutorList WHERE category=:category AND tutor=:tutor";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":category" => $category, ":tutor" => $tutor);
+
+		$stmt->execute($data);
+	}
+
 	public function modifyingAccount($login, $status){
 		$sql = "UPDATE tutoring_website_accounts SET status=:status WHERE login=:login";
 
@@ -101,12 +111,12 @@ class Storage{
 		$stmt->execute($data);
 	}
 
-	public function register($login, $tutor){
-		$sql = "INSERT INTO tutoring_website_registered (student, tutoring) VALUES (:login, :tutor)";
+	public function register($category, $login, $tutor){
+		$sql = "INSERT INTO tutoring_website_registered (category, student, tutoring) VALUES (:category, :login, :tutor)";
 
 		$stmt = $this->PDO->prepare($sql);
 
-		$data = array(":login" => $login, ":tutor" => $tutor);
+		$data = array(":category" => $category, ":login" => $login, ":tutor" => $tutor);
 
 		$stmt->execute($data);
 	}
@@ -117,6 +127,20 @@ class Storage{
 		$stmt = $this->PDO->prepare($sql);
 
 		$data = array(":tutor" => $tutor);
+
+		$stmt->execute($data);
+
+		$lines = $stmt->fetchAll();
+
+		return $lines;
+	}
+
+	public function readStudentTutoring($login){
+		$sql = "SELECT category, tutor FROM tutoring_website_registered WHERE student=:login";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":student" => $login);
 
 		$stmt->execute($data);
 
