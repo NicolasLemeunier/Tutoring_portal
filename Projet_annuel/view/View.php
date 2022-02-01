@@ -38,7 +38,7 @@ class View{
 		}
 
 
-		//$this->render();
+		$this->render();
 	}
 
 	public function bugPage(){
@@ -53,7 +53,7 @@ class View{
 		include("templates/Connection_page.php");
 		$this->content = ob_get_clean();
 
-		//$this->render();
+		$this->render();
 	}
 
 	public function accountCreationPage(){
@@ -62,7 +62,7 @@ class View{
 		include("templates/Account_creation_page.php");
 		$this->content = ob_get_clean();
 
-		//$this->render();
+		$this->render();
 	}
 
 	public function adminPageView(Array $data){
@@ -71,7 +71,7 @@ class View{
 		include("templates/Admin_page.php");
 		$this->content = ob_get_clean();
 
-		//$this->render();
+		$this->render();
 	}
 
 	public function tutoringCreationPage(){
@@ -80,7 +80,7 @@ class View{
 		include("templates/tutoring_creation_page.php");
 		$this->content = ob_get_clean();
 
-		//$this->render();
+		$this->render();
 	}
 
 	public function tutoringListPage($data){
@@ -89,7 +89,7 @@ class View{
 		include("templates/tutoring_list_page.php");
 		$this->content = ob_get_clean();
 
-		//$this->render();
+		$this->render();
 	}
 
 	public function information($category, $tutor, $data, $registered){
@@ -98,7 +98,7 @@ class View{
 		include("templates/tutoring_information_page.php");
 		$this->content = ob_get_clean();
 
-		//$this->render();
+		$this->render();
 	}
 
 	public function success(){
