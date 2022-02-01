@@ -81,67 +81,83 @@ class Router{
 
 
 	public function getConnectionPageURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?connection";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?connection";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?connection";
 	}
 
 	public function getConnectionURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?connection_A";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?connection_A";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?connection_A";
 	}
 
 	public function getAccountCreationPageURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?accountCreation";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?accountCreation";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?accountCreation";
 	}
 
 	public function getAccountCreationURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?accountCreation_A";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?accountCreation_A";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?accountCreation_A";
 	}
 
 	public function getWelcomePageURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php";
 	}
 
 	public function getDisconnectionURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?disconnection";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?disconnection";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?disconnection";
 	}
 
 	public function getAdminPageURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?admin";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?admin";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?admin";
 	}
 
 	public function getTutoringListPageURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tutoringList";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tutoringList";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?tutoringList";
 	}
 
 	public function getTutoringCreationPageURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tutoringCreation";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tutoringCreation";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?tutoringCreation";
 	}
 
 	public function getResearchURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?search";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?search";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?search";
 	}
 
 	public function getTutoringPageURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tu";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tu";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?tu";
 	}
 
 	public function getDeletionAccountURL($login){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?deletion&login=$login";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?deletion&login=$login";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?deletion&login=$login";
 	}
 
 	public function getModifyingAccountURL($login, $status){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?modify&login=$login&status=$status";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?modify&login=$login&status=$status";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?modify&login=$login&status=$status";
 	}
 
 	public function getTutoringCreationURL(){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tutoringCreation_A";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?tutoringCreation_A";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?tutoringCreation_A";
 	}
 
 	public function getTutoringInformationPageURL($category, $tutor){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?information&category=$category&tutor=$tutor";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?information&category=$category&tutor=$tutor";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?information&category=$category&tutor=$tutor";
 	}
 
 	public function getRegisterURL($tutor){
-		return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?register_A&tutor=$tutor";
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?register_A&tutor=$tutor";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?register_A&tutor=$tutor";
 	}
 
 	public function POSTredirect($url){
