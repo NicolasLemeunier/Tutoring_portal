@@ -12,10 +12,9 @@ echo "<h2>Comptes</h2>
 			
 	";
 		
-
-foreach ($data as $key) {
-	echo "<tr><td>Tutorat en {$key['category']}</td></tr>";
-}
+	foreach ($data as $key) {
+		echo "<tr><td>Tutorat en {$key['category']}<button><a href={$this->router->getTutoringDeletionURL($key['category'], $key['tutor'])}>Supprimer</a></button></td></tr>";
+	}
 
 echo "</tbody>
 	  </table>";
