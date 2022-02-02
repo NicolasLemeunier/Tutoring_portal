@@ -78,6 +78,9 @@ class Router{
 				case "tutoringDeletion":
 					$this->controller->tutoringDeletion($_GET['category'], $_GET['tutor']);
 				break;
+				case "tutoringModification":
+					$this->controller->tutoringModification($_GET['category'], $_GET['tutor']);
+				break;
 
 
 			 default:
@@ -176,6 +179,10 @@ class Router{
 	public function getTutoringDeletionURL($category, $tutor){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringDeletion&category=$category&tutor=$tutor";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringDeletion&category=$category&tutor=$tutor";
+	}
+	public function getTutoringModificationURL($category, $tutor){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModification&category=$category&tutor=$tutor";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringModification&category=$category&tutor=$tutor";
 	}
 
 

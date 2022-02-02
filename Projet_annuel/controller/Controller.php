@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Controller{
 	private $view, $storage;
@@ -12,11 +12,11 @@ class Controller{
 		foreach($this->storage->readAllAccounts() as $key){
 			if($key['login'] == $data['Login']){
 				if(password_verify($data['Password'], $key['password'])){
-					$_SESSION['user'] = new Account($data['Login'], $key['password'], $key['status']);				 	
+					$_SESSION['user'] = new Account($data['Login'], $key['password'], $key['status']);
 				 	$this->view->success();
 
 				 	return true;
- 				} 
+ 				}
 			}
 		}
 
@@ -97,7 +97,7 @@ class Controller{
 
 			$data = $this->storage->readAllTutoringFromAPerson($tutor);
 			$this->view->tutoringListPage($data);
-	
+
 
 	}
 
@@ -126,6 +126,11 @@ class Controller{
 	public function tutoringDeletion($category, $tutor){
 		$this->storage->deleteTutoring($category, $tutor);
 		$this->welcomePage();
+	}
+	public function tutoringModification($category, $tutor){
+		$this->view->tutoringModification($category, $tutor);
+		//$this->storage->deleteTutoring($category, $tutor);
+		//$this->welcomePage();
 	}
 }
 

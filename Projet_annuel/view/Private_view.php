@@ -41,8 +41,13 @@ class Private_view extends View{
 			$this->content .= $categories_list[$key];
 		}
 
+	}
 
-		//$this->render();
+	public function tutoringModification($category,$tutor){
+		$this->title = "Modifer votre tutorat";
+		ob_start();
+		include("templates/tutoring_modification_page.php");
+		$this->content = ob_get_clean();
 	}
 }
 

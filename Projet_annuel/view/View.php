@@ -36,9 +36,6 @@ class View{
 			$categories_list[$key] .= "</table>";
 			$this->content .= $categories_list[$key];
 		}
-
-
-		//$this->render();
 	}
 
 	public function bugPage(){
@@ -52,8 +49,6 @@ class View{
 		ob_start();
 		include("templates/Connection_page.php");
 		$this->content = ob_get_clean();
-
-		//$this->render();
 	}
 
 	public function accountCreationPage(){
@@ -61,8 +56,6 @@ class View{
 		ob_start();
 		include("templates/Account_creation_page.php");
 		$this->content = ob_get_clean();
-
-		//$this->render();
 	}
 
 	public function adminPageView(Array $data){
@@ -70,8 +63,6 @@ class View{
 		ob_start();
 		include("templates/Admin_page.php");
 		$this->content = ob_get_clean();
-
-		//$this->render();
 	}
 
 	public function tutoringCreationPage(){
@@ -79,8 +70,6 @@ class View{
 		ob_start();
 		include("templates/tutoring_creation_page.php");
 		$this->content = ob_get_clean();
-
-		//$this->render();
 	}
 
 	public function tutoringListPage($data){
@@ -88,8 +77,6 @@ class View{
 		ob_start();
 		include("templates/tutoring_list_page.php");
 		$this->content = ob_get_clean();
-
-		//$this->render();
 	}
 
 	public function information($category, $tutor, $data, $registered){
@@ -97,13 +84,12 @@ class View{
 		ob_start();
 		include("templates/tutoring_information_page.php");
 		$this->content = ob_get_clean();
-
-		//$this->render();
 	}
 
 	public function success(){
 		$this->router->POSTredirect($this->router->getWelcomePageURL(), "Success");
 	}
+
 
 	public function getMenu(){
 		return array(
