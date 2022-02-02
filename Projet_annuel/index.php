@@ -13,13 +13,13 @@ require_once("controller/Controller.php");
 
 
 try {
-  /*
+/*
   $dsn = MYSQL_HOST . ";" . "dbname=" . MYSQL_DB . ";" . "charset=utf8";
 
   $router = new Router();
   $router->main(new Storage(new PDO($dsn, MYSQL_USER, MYSQL_PASSWORD)));
+*/
 
-  */
 
   /*Pour nathan : */
 
