@@ -93,13 +93,19 @@ class Controller{
 		$this->adminPage();
 	}
 
-	public function tutoringList($tutor){
+	public function tutoringList($login){
+			$data = array();
 
-			$data = $this->storage->readAllTutoringFromAPerson($tutor);
+			if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Tutor"){
+				$data = $this->storage->readAllTutoringFromAPerson($login);
+			}
+
+			if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student")
+				$data = $this->storage->readStudentTutoring($login);
+
 			$this->view->tutoringListPage($data);
-
-
 	}
+
 
 	public function tutoringCreation(array $data){
 		if(array_key_exists('user', $_SESSION)){
@@ -120,18 +126,20 @@ class Controller{
 
 	public function register($category, $tutor){
 		$this->storage->register($category, $_SESSION['user']->getLogin(), $tutor);
-		$this->tutoringList($tutor);
+		$this->tutoringList($_SESSION['user']->getLogin());
 	}
 
 	public function tutoringDeletion($category, $tutor){
 		$this->storage->deleteTutoring($category, $tutor);
+		$this->storage->deleteRegistered($category, $tutor);
 		$this->welcomePage();
 	}
+
 	public function tutoringModification($category, $tutor){
-		$this->view->tutoringModification($category, $tutor);
-		//$this->storage->deleteTutoring($category, $tutor);
-		//$this->welcomePage();
-	}
+                $this->view->tutoringModification($category, $tutor);
+                //$this->storage->deleteTutoring($category, $tutor);
+                //$this->welcomePage();
+        }
 }
 
 ?>

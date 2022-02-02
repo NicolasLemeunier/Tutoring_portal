@@ -101,6 +101,17 @@ class Storage{
 		$stmt->execute($data);
 	}
 
+	public function deleteTutoringStudents($category, $tutor){
+		$sql = "DELETE FROM tutoring_website_registered WHERE category=:category AND tutor=:tutor";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":category" => $category, ":tutor" => $tutor);
+
+		$stmt->execute($data);
+	}
+
+
 	public function modifyingAccount($login, $status){
 		$sql = "UPDATE tutoring_website_accounts SET status=:status WHERE login=:login";
 
@@ -112,7 +123,7 @@ class Storage{
 	}
 
 	public function register($category, $login, $tutor){
-		$sql = "INSERT INTO tutoring_website_registered (category, student, tutoring) VALUES (:category, :login, :tutor)";
+		$sql = "INSERT INTO tutoring_website_registered (category, student, tutor) VALUES (:category, :login, :tutor)";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -122,7 +133,7 @@ class Storage{
 	}
 
 	public function readRegistered($tutor){
-		$sql = "SELECT student FROM tutoring_website_registered WHERE tutoring=:tutor";
+		$sql = "SELECT student FROM tutoring_website_registered WHERE tutor=:tutor";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -140,7 +151,7 @@ class Storage{
 
 		$stmt = $this->PDO->prepare($sql);
 
-		$data = array(":student" => $login);
+		$data = array(":login" => $login);
 
 		$stmt->execute($data);
 
