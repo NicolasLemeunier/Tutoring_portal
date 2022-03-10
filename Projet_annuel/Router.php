@@ -95,6 +95,7 @@ class Router{
       }
     } catch (Exception $e) {
 			// Si on arrive ici, il s'est passé quelque chose d'imprévu (par exemple un problème de base de données)
+			echo $e;
 			$this->view->bugPage();
 		}
 		$this->view->render();

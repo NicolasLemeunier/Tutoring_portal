@@ -19,12 +19,12 @@ class Storage{
 		$stmt->execute($data);
 	}
 
-	public function insertTutoring($category, $description, $nbMax, $tutor){
+	public function insertTutoring($category, $description, $nbMaxStudents, $tutor){
 		$sql = "INSERT INTO tutoring_website_tutorList(category, description, nbMaxStudents, tutor) VALUES(:category, :description, :nbMaxStudents, :tutor)";
 
 		$stmt = $this->PDO->prepare($sql);
 
-		$data = array(":category" => $category, ":description" => $description, ":nbMaxStudents" => $nbMax, ":tutor" => $tutor);
+		$data = array(":category" => $category, ":description" => $description, ":nbMaxStudents" => $nbMaxStudents, ":tutor" => $tutor);
 
 		$stmt->execute($data);
 	}
@@ -160,13 +160,13 @@ class Storage{
 		$stmt->execute($data);
 	}
 
-	public function modifyingTutoring($info,$id){
+	public function modifyingTutoring($category,$description,$nbMaxStudents,$id){
 		//OK
 		$sql = "UPDATE tutoring_website_tutorList SET category=:category, description=:description, nbMaxStudents=:nbMaxStudents WHERE id=:id";
 
 		$stmt = $this->PDO->prepare($sql);
 
-		$data = array(":category" => $info['Category'],":description" => $info['Description'],":nbMaxStudents" => $info['Max_number'],":id" => $id);
+		$data = array(":category" => $category,":description" => $description,":nbMaxStudents" => $nbMaxStudents,":id" => $id);
 
 		$stmt->execute($data);
 

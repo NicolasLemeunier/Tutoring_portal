@@ -42,12 +42,7 @@ class Private_view extends View{
 
 	}
 
-	public function tutoringModification($id,$data){
-		$this->title = "Modifer votre tutorat";
-		ob_start();
-		include("templates/tutoring_modification_page.php");
-		$this->content = ob_get_clean();
-	}
+
 }
 
 ?>

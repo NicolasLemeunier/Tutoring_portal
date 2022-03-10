@@ -151,29 +151,28 @@ class Controller{
 	public function tutoringModification($id){
 		//OK
 		 $data = $this->storage->readTutoringByID($id);
-		 //$tutoringBuilder = new TutoringBuilder($data);
-
 		 if($data == null){
 			 $this->view->bugPage();
 		 }else{
-			 //var_dump($tutoringBuilder->getData());
-			 $this->view->tutoringModification($id,$data);
+			 $tutoringBuilder = new TutoringBuilder($data);
+			 $this->view->tutoringModification($id,$tutoringBuilder);
 		 }
-
   }
 
-	public function confirmTutoringModif($post,$tutoringID) {
-
-		$ok = $this->storage->modifyingTutoring($post,$tutoringID);
-		//$tutoring = $this->storage->readTutoringByID($tutoringID);
-		if ($ok) {
-			/* Tout s'est bien passé */
-			//$this->view->information($data, $registered);
-			$this->view->tutoringModifedPage();
-			} else {
-				$this->view->bugPage();
-				}
-		}
+	public function confirmTutoringModif($post,$id) {
+		$tutoringBuilder = new TutoringBuilder($post);
+		 if(!$tutoringBuilder->isValid()){
+			$this->view->tutoringModification($id,$tutoringBuilder);
+		 }else{
+ 			if(array_key_exists('user', $_SESSION)){
+ 			 	$finalTutoring = $tutoringBuilder->createTutoring();
+				$this->storage->modifyingTutoring($finalTutoring->getCategory(), $finalTutoring->getDescription(), $finalTutoring->getNbMax(),$id);
+				$this->tutoringList($_SESSION['user']->getLogin());
+  		}else{
+ 	 				$this->welcomePage();
+ 	 		}
+ 	 	}
+	}
 }
 
 ?>

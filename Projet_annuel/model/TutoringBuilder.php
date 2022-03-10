@@ -3,7 +3,6 @@
 class TutoringBuilder{
 
   protected $data;
-  protected $tutor;
   protected $error;
 
   public function __construct($data = null){
@@ -16,7 +15,7 @@ class TutoringBuilder{
 
 				"description" => "",
 
-        "nbMax" => "",
+        "nbMaxStudents" => "",
 			);
 
 		}
@@ -29,7 +28,7 @@ class TutoringBuilder{
 
       "description" => "",
 
-      "nbMax" => "",
+      "nbMaxStudents" => "",
     );
 
   }
@@ -49,7 +48,7 @@ class TutoringBuilder{
   public function createTutoring(){
     include("model/Tutoring.php");
 
-    $tutoring = new Tutoring($this->data["category"],$this->data["description"],$this->data["nbMax"]);
+    $tutoring = new Tutoring($this->data["category"],$this->data["description"],$this->data["nbMaxStudents"]);
 
     return $tutoring;
 
@@ -60,7 +59,7 @@ class TutoringBuilder{
     $this->error = array(
       "category" => "",
       "description" => "",
-      "nbMax" => "",
+      "nbMaxStudents" => "",
     );
 
     if (!key_exists("category", $this->data) || $this->data["category"] === ""){
@@ -69,8 +68,12 @@ class TutoringBuilder{
 			$this->error["category"] = "La catégorie doit faire moins de 30 caractères";
       }
 
-    if(!key_exists("nbMax",$this->data) || $this->data["nbMax"] == ""){
-      $this->error["nbMax"] = "Vous devez entrer le nombre maximum de participants";
+    if(!key_exists("nbMaxStudents",$this->data) || $this->data["nbMaxStudents"] == ""){
+      $this->error["nbMaxStudents"] = "Vous devez entrer le nombre maximum de participants";
+    }
+
+    if(!key_exists("description",$this->data) || $this->data["description"] === ""){
+      $this->error["description"] = "Vous devez entrer une description";
     }
 
     foreach ($this->error as $key => $value) {

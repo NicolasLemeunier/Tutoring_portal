@@ -8,17 +8,17 @@ class Tutoring{
 
   protected $description;
 
-  protected $nbMax;
+  protected $nbMaxStudents;
 
   protected $tutor;
 
-  public function __construct($category,$description,$nbMax){
+  public function __construct($category,$description,$nbMaxStudents){
 
     $this->category = $category;
 
     $this->description = $description;
 
-    $this->nbMax = $nbMax;
+    $this->nbMaxStudents = $nbMaxStudents;
 
     $this->tutor = $_SESSION['user']->getLogin();
 
@@ -38,7 +38,7 @@ class Tutoring{
 
   public function getNbMax(){
 
-    return $this->nbMax;
+    return $this->nbMaxStudents;
 
   }
 

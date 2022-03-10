@@ -89,10 +89,11 @@ class View{
 		$this->content = ob_get_clean();
 	}
 
-	public function tutoringModifedPage(){
-		$this->title = "Modification réussi";
-
-		$this->content = "<h2> Vous venez de modifier un de vos tutorat</h2>";
+	public function tutoringModification($id,$tutoringBuilder){
+		$this->title = "Modifer votre tutorat";
+		ob_start();
+		include("templates/tutoring_modification_page.php");
+		$this->content = ob_get_clean();
 	}
 
 	public function success(){
