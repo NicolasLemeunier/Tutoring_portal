@@ -13,6 +13,8 @@ class Router{
 
 		session_start();
 
+		$id = key_exists('id', $_GET)? $_GET['id']: null;
+
 		if(array_key_exists('user', $_SESSION) && $_SESSION['user'] != null)
 			$this->view = new Private_view($this, $_SESSION['user']); //If the user is connected.
 		else
@@ -79,10 +81,12 @@ class Router{
 					$this->controller->tutoringDeletion($_GET['category'], $_GET['tutor']);
 				break;
 				case "tutoringModification":
-					$this->controller->tutoringModification($_GET['category'], $_GET['tutor']);
+					$this->controller->tutoringModification($_GET['category'], $_GET['tutor'],$id);
 				break;
 				case "tutoringModified":
-					$this->view->success();
+					var_dump($_POST);
+					$this->controller->confirmTutoringModif($_POST,$id);
+					//$this->view->success();
 				break;
 
 
@@ -183,13 +187,13 @@ class Router{
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringDeletion&category=$category&tutor=$tutor";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringDeletion&category=$category&tutor=$tutor";
 	}
-	public function getTutoringModificationURL($category, $tutor){
-		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModification&category=$category&tutor=$tutor";
-		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringModification&category=$category&tutor=$tutor";
+	public function getTutoringModificationURL($category,$tutor,$id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModification&category=$category=$category&tutor=$tutor&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringModification&category=$category&tutor=$tutor&id=$id2";
 	}
-	public function getTutoringModifiedURL($tutor){
-		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModified&tutor=$tutor";
-		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringModified&tutor=$tutor";
+	public function getTutoringModifiedURL($id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModified&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringModified&id=$id2";
 	}
 
 

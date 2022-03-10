@@ -137,27 +137,28 @@ class Controller{
 		$this->welcomePage();
 	}
 
-	public function tutoringModification($category, $tutor){
+	public function tutoringModification($category, $tutor,$id){
 		//OK
-		 $data = $this->storage->readTutoring($tutor);
-		 $tutoringBuilder = new TutoringBuilder($data);
+		 $data = $this->storage->readTutoringByID($id);
+		 //$tutoringBuilder = new TutoringBuilder($data);
+
 		 if($data == null){
 			 $this->view->bugPage();
 		 }else{
-			 var_dump($tutoringBuilder->getData());
-			 $this->view->tutoringModification($tutoringBuilder,$tutor);
+			 //var_dump($tutoringBuilder->getData());
+			 $this->view->tutoringModification($id,$data);
 		 }
 
   }
 
 	public function confirmTutoringModif($post,$tutoringID) {
-		//modifyingTutoring($info,$category0, $tutor0)
-		$ok = $this->storage->modifyingTutoring($post,$singerId);
-		$tutoring = $this->storage->readTutoringByID($tutoringID);
+
+		$ok = $this->storage->modifyingTutoring($post,$tutoringID);
+		//$tutoring = $this->storage->readTutoringByID($tutoringID);
 		if ($ok) {
 			/* Tout s'est bien passé */
 			//$this->view->information($data, $registered);
-			$this->view->welcomePage();
+			$this->view->tutoringModifedPage();
 			} else {
 				$this->view->bugPage();
 				}
