@@ -136,10 +136,27 @@ class Controller{
 	}
 
 	public function tutoringModification($category, $tutor){
-                $this->view->tutoringModification($category, $tutor);
-                //$this->storage->deleteTutoring($category, $tutor);
-                //$this->welcomePage();
-        }
+		//OK
+		 $tutoring = $this->storage->readTutoring($tutor);
+		 if($tutoring == null){
+			 $this->view->bugPage();
+		 }else{
+			 var_dump($tutoring);
+			 $this->view->tutoringModification($tutoring,$tutor);
+		 }
+  }
+
+	public function confirmTutoringModif($post,$tutoringID) {
+		//modifyingTutoring($info,$category0, $tutor0)
+		$ok = $this->storage->modifyingTutoring($post,$singerId);
+		$singer = $this->singerStorage->read($singerId);
+		if ($ok) {
+			/* Tout s'est bien passé */
+			$this->view->makeDetailSingerPage($singer);
+			} else {
+				$this->view->makeUnknownSingerPage();
+						}
+			}
 }
 
 ?>

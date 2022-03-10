@@ -1,7 +1,7 @@
 <?php
 
 class Storage{
-	
+
 	private $PDO;
 
 	function __construct($PDO){
@@ -43,6 +43,23 @@ class Storage{
 		return $line;
 	}
 
+	public function readTutoringByID($idTutoring){
+
+		//si par exemple un tuteur à plusieurs tutorats
+		$sql = "SELECT category,description,nbMaxStudents FROM tutoring_website_tutorList WHERE id=:id";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":id" => $idTutoring);
+
+		$stmt->execute($data);
+
+		$lines = $stmt->fetchAll();
+
+		return $lines;
+	}
+
+
 	public function readAllAccounts(){
 		$stmt = $this->PDO->query("SELECT login, password, status FROM tutoring_website_accounts");
 
@@ -71,7 +88,10 @@ class Storage{
 		$lines = $stmt->fetchAll();
 
 		return $lines;
-	} 
+	}
+
+
+
 
 	public function research(string $word){
 		$stmt = $this->PDO->query("SELECT category, tutor FROM tutoring_website_tutorList WHERE category LIKE \"$word%\"");
@@ -121,6 +141,19 @@ class Storage{
 
 		$stmt->execute($data);
 	}
+
+	public function modifyingTutoring($info,$category0, $tutor0){
+		//Surement OK
+		$sql = "UPDATE tutoring_website_tutorList SET category=:category, description=:description, nbMaxStudents=:nbMaxStudents WHERE category0=:category0 AND tutor0=:tutor0";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":category" => $info['category'],":description" => $info['description'],":nbMaxStudents" => $info['nbMax'],":category0" => $category0, ":tutor0" => $tutor0);
+
+		$stmt->execute($data);
+	}
+
+
 
 	public function register($category, $login, $tutor){
 		$sql = "INSERT INTO tutoring_website_registered (category, student, tutor) VALUES (:category, :login, :tutor)";

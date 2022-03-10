@@ -43,7 +43,7 @@ class Private_view extends View{
 
 	}
 
-	public function tutoringModification($category,$tutor){
+	public function tutoringModification($tutoring,$tutor){
 		$this->title = "Modifer votre tutorat";
 		ob_start();
 		include("templates/tutoring_modification_page.php");
