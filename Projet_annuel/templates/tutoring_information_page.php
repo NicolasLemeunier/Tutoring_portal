@@ -2,9 +2,9 @@
 
 echo "<h2>Informations sur le tutorat</h2>";
 
-echo "<h4>Catégorie :</h4> $category </br>";
+echo "<h4>Catégorie :</h4> {$data['category']} </br>";
 
-echo "<h4>Tuteur :</h4> $tutor </br>";
+echo "<h4>Tuteur :</h4> {$data['tutor']} </br>";
 
 echo "<h4>Nombre d'étudiant maximum pouvant suivre ce tutorat :</h4> {$data['nbMaxStudents']} </br>";
 
@@ -19,7 +19,7 @@ if($registered != null){
 
 	foreach ($registered as $key) {
 		echo "<th>{$key['student']}</th>";
-		if($key['student'] === $tutor)
+		if($key['student'] === $data['tutor'])
 			$isRegistered = true;
 
 		$counter++;
@@ -29,6 +29,6 @@ if($registered != null){
 	}
 
 if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student" && $isRegistered == false && $counter != $data['nbMaxStudents'])
-	echo "<button><a href={$this->router->getRegisterURL($category, $tutor)}>S'inscrire à ce tutorat</a></button>"
+	echo "<button><a href={$this->router->getRegisterURL($data['category'], $data['tutor'])}>S'inscrire à ce tutorat</a></button>"
 
 ?>

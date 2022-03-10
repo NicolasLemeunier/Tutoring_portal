@@ -1,5 +1,7 @@
 <?php
 
+require_once("model/TutoringBuilder.php"); //OK
+
 class Controller{
 	private $view, $storage;
 
@@ -116,12 +118,12 @@ class Controller{
 			$this->welcomePage();
 	}
 
-	public function information($catagory, $tutor){
+	public function information($category, $tutor){
 		$data = $this->storage->readTutoring($tutor);
 
 		$registered = $this->storage->readRegistered($tutor);
 
-		$this->view->information($catagory, $tutor, $data, $registered);
+		$this->view->information($data, $registered);
 	}
 
 	public function register($category, $tutor){
@@ -137,26 +139,29 @@ class Controller{
 
 	public function tutoringModification($category, $tutor){
 		//OK
-		 $tutoring = $this->storage->readTutoring($tutor);
-		 if($tutoring == null){
+		 $data = $this->storage->readTutoring($tutor);
+		 $tutoringBuilder = new TutoringBuilder($data);
+		 if($data == null){
 			 $this->view->bugPage();
 		 }else{
-			 var_dump($tutoring);
-			 $this->view->tutoringModification($tutoring,$tutor);
+			 var_dump($tutoringBuilder->getData());
+			 $this->view->tutoringModification($tutoringBuilder,$tutor);
 		 }
+
   }
 
 	public function confirmTutoringModif($post,$tutoringID) {
 		//modifyingTutoring($info,$category0, $tutor0)
 		$ok = $this->storage->modifyingTutoring($post,$singerId);
-		$singer = $this->singerStorage->read($singerId);
+		$tutoring = $this->storage->readTutoringByID($tutoringID);
 		if ($ok) {
 			/* Tout s'est bien passé */
-			$this->view->makeDetailSingerPage($singer);
+			//$this->view->information($data, $registered);
+			$this->view->welcomePage();
 			} else {
-				$this->view->makeUnknownSingerPage();
-						}
-			}
+				$this->view->bugPage();
+				}
+		}
 }
 
 ?>

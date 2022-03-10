@@ -13,7 +13,7 @@ class View{
 		include("templates/Skeleton.php");
 	}
 
-	public function welcomePage(array $data){
+	public function welcomePage($data){
 		$this->title = "Page d'accueil";
 		ob_start();
 		include("templates/Welcome_page.php");
@@ -58,7 +58,7 @@ class View{
 		$this->content = ob_get_clean();
 	}
 
-	public function adminPageView(Array $data){
+	public function adminPageView($data){
 		$this->title = "Page administrateur";
 		ob_start();
 		include("templates/Admin_page.php");
@@ -79,7 +79,7 @@ class View{
 		$this->content = ob_get_clean();
 	}
 
-	public function information($category, $tutor, $data, $registered){
+	public function information($data, $registered){
 		$this->title = "Page d'informations";
 		ob_start();
 		include("templates/tutoring_information_page.php");

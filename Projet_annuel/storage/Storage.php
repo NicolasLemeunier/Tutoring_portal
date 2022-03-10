@@ -30,7 +30,7 @@ class Storage{
 	}
 
 	public function readTutoring($tutor){
-		$sql = "SELECT category, description, nbMaxStudents FROM tutoring_website_tutorList WHERE tutor=:tutor";
+		$sql = "SELECT id, category, description, nbMaxStudents, tutor FROM tutoring_website_tutorList WHERE tutor=:tutor";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -46,7 +46,7 @@ class Storage{
 	public function readTutoringByID($idTutoring){
 
 		//si par exemple un tuteur à plusieurs tutorats
-		$sql = "SELECT category,description,nbMaxStudents FROM tutoring_website_tutorList WHERE id=:id";
+		$sql = "SELECT category,description,nbMaxStudents,tutor FROM tutoring_website_tutorList WHERE id=:id";
 
 		$stmt = $this->PDO->prepare($sql);
 

@@ -17,7 +17,7 @@ class Private_view extends View{
 	 * This methods builds the welcome page.
 	 */
 
-	public function welcomePage(Array $data){
+	public function welcomePage($data){
 		$this->title = "Page d'accueil";
 		ob_start();
 		include("templates/Welcome_page.php");
