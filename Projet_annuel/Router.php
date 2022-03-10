@@ -86,6 +86,9 @@ class Router{
 				case "tutoringModified":
 					$this->controller->confirmTutoringModif($_POST,$id);
 				break;
+				case "adminTutoring":
+					$this->controller->adminPageTutoring();
+				break;
 
 
 			 default:
@@ -193,6 +196,11 @@ class Router{
 	public function getTutoringModifiedURL($id2){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModified&id=$id2";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringModified&id=$id2";
+	}
+
+	public function getAdminTutoringPageURL(){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=adminTutoring";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=adminTutoring";
 	}
 
 

@@ -16,8 +16,14 @@ else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Admin")
 if(!array_key_exists('user', $_SESSION) || $_SESSION['user'] == null)
 	echo "<li><a href = {$this->router->getConnectionPageURL()}>Se connecter</a></li>";
 else{
-	echo "<li><a href = {$this->router->getTutoringListPageURL()}>Liste de vos tutorats</a></li>";
-	echo "<li><a href = {$this->router->getDisconnectionURL()}>Se déconnecter</a></li>";
+	if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Admin"){
+		echo "<li><a href = {$this->router->getAdminTutoringPageURL()}>Gestion des tutorats</a></li>";
+		echo "<li><a href = {$this->router->getDisconnectionURL()}>Se déconnecter</a></li>";
+	}else{
+		echo "<li><a href = {$this->router->getTutoringListPageURL()}>Liste de vos tutorats</a></li>";
+		echo "<li><a href = {$this->router->getDisconnectionURL()}>Se déconnecter</a></li>";
+	}
+
 }
 
 echo "</ul></nav>";

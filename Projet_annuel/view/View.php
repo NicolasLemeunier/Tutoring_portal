@@ -64,6 +64,12 @@ class View{
 		include("templates/Admin_page.php");
 		$this->content = ob_get_clean();
 	}
+	public function adminPageTutoring($data){
+		$this->title = "Page administrateur";
+		ob_start();
+		include("templates/Admin_tutoring_page.php");
+		$this->content = ob_get_clean();
+	}
 
 	public function tutoringCreationPage($tutoringBuilder = ""){
 		if($tutoringBuilder == ""){

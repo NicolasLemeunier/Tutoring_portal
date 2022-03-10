@@ -71,6 +71,9 @@ class Controller{
 	public function adminPage(){
 		$this->view->adminPageView($this->storage->readAllAccounts());
 	}
+	public function adminPageTutoring(){
+		$this->view->adminPageTutoring($this->storage->readAllTutoring());
+	}
 
 	public function accountDeletion(String $login){
 		$this->storage->deleteAccount($login);
@@ -128,11 +131,8 @@ class Controller{
 	}
 
 	public function information($id){
-		//faire un truc avec l'id
 		$data = $this->storage->readTutoringByID($id);
-
 		$registered = $this->storage->readRegistered($_SESSION['user']->getLogin());
-
 		$this->view->information($data, $registered);
 	}
 
@@ -172,6 +172,10 @@ class Controller{
  	 				$this->welcomePage();
  	 		}
  	 	}
+	}
+
+	public function adminTutoring(){
+
 	}
 }
 
