@@ -129,12 +129,12 @@ class Storage{
 		$stmt->execute($data);
 	}
 
-	public function deleteTutoring($category, $tutor){
-		$sql = "DELETE FROM tutoring_website_tutorList WHERE category=:category AND tutor=:tutor";
+	public function deleteTutoring($id){
+		$sql = "DELETE FROM tutoring_website_tutorList WHERE id=:id";
 
 		$stmt = $this->PDO->prepare($sql);
 
-		$data = array(":category" => $category, ":tutor" => $tutor);
+		$data = array(":id" => $id);
 
 		$stmt->execute($data);
 	}
@@ -161,8 +161,7 @@ class Storage{
 	}
 
 	public function modifyingTutoring($info,$id){
-		//Surement OK
-		var_dump($info);
+		//OK
 		$sql = "UPDATE tutoring_website_tutorList SET category=:category, description=:description, nbMaxStudents=:nbMaxStudents WHERE id=:id";
 
 		$stmt = $this->PDO->prepare($sql);
@@ -170,7 +169,7 @@ class Storage{
 		$data = array(":category" => $info['Category'],":description" => $info['Description'],":nbMaxStudents" => $info['Max_number'],":id" => $id);
 
 		$stmt->execute($data);
-		
+
 		return true;
 	}
 

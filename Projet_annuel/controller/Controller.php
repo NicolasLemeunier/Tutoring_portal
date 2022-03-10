@@ -131,13 +131,14 @@ class Controller{
 		$this->tutoringList($_SESSION['user']->getLogin());
 	}
 
-	public function tutoringDeletion($category, $tutor){
-		$this->storage->deleteTutoring($category, $tutor);
-		$this->storage->deleteRegistered($category, $tutor);
+	public function tutoringDeletion($tutoringID){
+		$this->storage->deleteTutoring($tutoringID);
+		//La fonction n'est plus dans le storage ????
+		//$this->storage->deleteRegistered($tutoringID);
 		$this->welcomePage();
 	}
 
-	public function tutoringModification($category, $tutor,$id){
+	public function tutoringModification($id){
 		//OK
 		 $data = $this->storage->readTutoringByID($id);
 		 //$tutoringBuilder = new TutoringBuilder($data);

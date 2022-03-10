@@ -78,7 +78,7 @@ class Router{
 					$this->controller->register($_GET['category'], $_GET['tutor']);
  				break;
 				case "tutoringDeletion":
-					$this->controller->tutoringDeletion($_GET['category'], $_GET['tutor']);
+					$this->controller->tutoringDeletion($id);
 				break;
 				case "tutoringModification":
 					$this->controller->tutoringModification($_GET['category'], $_GET['tutor'],$id);
@@ -183,13 +183,13 @@ class Router{
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=register_A&tutor=$tutor";
 	}
 
-	public function getTutoringDeletionURL($category, $tutor){
-		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringDeletion&category=$category&tutor=$tutor";
-		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringDeletion&category=$category&tutor=$tutor";
+	public function getTutoringDeletionURL($id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringDeletion&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringDeletion&id=$id2";
 	}
-	public function getTutoringModificationURL($category,$tutor,$id2){
-		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModification&category=$category=$category&tutor=$tutor&id=$id2";
-		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringModification&category=$category&tutor=$tutor&id=$id2";
+	public function getTutoringModificationURL($id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModification&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringModification&id=$id2";
 	}
 	public function getTutoringModifiedURL($id2){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModified&id=$id2";

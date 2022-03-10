@@ -13,7 +13,7 @@ echo "<h2>Comptes</h2>
 	";
 var_dump($data);
 	foreach ($data as $key) {
-		echo "<tr><td>Tutorat en {$key['category']}<button><a href={$this->router->getTutoringDeletionURL($key['category'], $key['tutor'])}>Supprimer</a></button><button><a href={$this->router->getTutoringModificationURL($key['category'],$key['tutor'],$key['id'])}>Modifer</a></button></td></tr>";
+		echo "<tr><td>Tutorat en {$key['category']}<button><a href={$this->router->getTutoringDeletionURL($key['id'])}>Supprimer</a></button><button><a href={$this->router->getTutoringModificationURL($key['id'])}>Modifer</a></button></td></tr>";
 	}
 
 echo "</tbody>

@@ -73,6 +73,7 @@ class View{
 	}
 
 	public function tutoringListPage($data){
+		var_dump($data);
 		$this->title = "Liste de vos tutorats";
 		ob_start();
 		include("templates/tutoring_list_page.php");
