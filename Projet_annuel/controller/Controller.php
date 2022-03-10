@@ -1,6 +1,8 @@
 <?php
 
 require_once("model/TutoringBuilder.php"); //OK
+//
+
 
 class Controller{
 	private $view, $storage;
@@ -110,18 +112,26 @@ class Controller{
 
 
 	public function tutoringCreation(array $data){
-		if(array_key_exists('user', $_SESSION)){
-			$this->storage->insertTutoring($data['Category'], $data['Description'], $data['Max_number'], $_SESSION['user']->getLogin());
-			$this->tutoringList($_SESSION['user']->getLogin());
-		}
-		else
-			$this->welcomePage();
+
+		$tutoringBuilder = new TutoringBuilder($data);
+		if(!$tutoringBuilder->isValid()){
+		 $this->view->tutoringCreationPage($tutoringBuilder);
+	 	}else{
+			if(array_key_exists('user', $_SESSION)){
+			 	$finalTutoring = $tutoringBuilder->createTutoring();
+	 			$this->storage->insertTutoring($finalTutoring->getCategory(), $finalTutoring->getDescription(), $finalTutoring->getNbMax(), $finalTutoring->getTutor());
+	 			$this->tutoringList($_SESSION['user']->getLogin());
+ 			}else{
+	 			$this->welcomePage();
+	 			}
+	 	}
 	}
 
-	public function information($category, $tutor){
-		$data = $this->storage->readTutoring($tutor);
+	public function information($id){
+		//faire un truc avec l'id
+		$data = $this->storage->readTutoringByID($id);
 
-		$registered = $this->storage->readRegistered($tutor);
+		$registered = $this->storage->readRegistered($_SESSION['user']->getLogin());
 
 		$this->view->information($data, $registered);
 	}

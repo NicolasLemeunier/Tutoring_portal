@@ -48,3 +48,7 @@ textarea{
 	height: 60px;
 	border-radius: 3px;
 }
+
+.error {
+    color: #f00;
+}

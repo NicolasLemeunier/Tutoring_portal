@@ -3,7 +3,7 @@
 class TutoringBuilder{
 
   protected $data;
-
+  protected $tutor;
   protected $error;
 
   public function __construct($data = null){
@@ -17,9 +17,6 @@ class TutoringBuilder{
 				"description" => "",
 
         "nbMax" => "",
-
-        "tutor" =>"",
-
 			);
 
 		}
@@ -33,9 +30,6 @@ class TutoringBuilder{
       "description" => "",
 
       "nbMax" => "",
-
-      "tutor" =>"",
-
     );
 
   }
@@ -53,8 +47,9 @@ class TutoringBuilder{
   }
 
   public function createTutoring(){
+    include("model/Tutoring.php");
 
-    $tutoring = new Tutoring($this->data["category"],$this->data["description"],$this->data["nbMax"],$this->data["tutor"]);
+    $tutoring = new Tutoring($this->data["category"],$this->data["description"],$this->data["nbMax"]);
 
     return $tutoring;
 
@@ -66,7 +61,6 @@ class TutoringBuilder{
       "category" => "",
       "description" => "",
       "nbMax" => "",
-      "tutor" =>"",
     );
 
     if (!key_exists("category", $this->data) || $this->data["category"] === ""){

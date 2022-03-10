@@ -22,12 +22,12 @@ class View{
 		$categories_list = array();
 
 		$tables = "";
-
 		foreach($data as $tu){
+
 			if(array_key_exists($tu['category'], $categories_list))
-				$categories_list[$tu['category']] .= "<tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['category'], $tu['tutor'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>";
+				$categories_list[$tu['category']] .= "<tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['id'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>";
 			else{
-				$categories_list = $categories_list + array($tu['category'] => "<table><thead><tr><th>{$tu['category']}</th><tr></thead><tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['category'], $tu['tutor'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>");
+				$categories_list = $categories_list + array($tu['category'] => "<table><thead><tr><th>{$tu['category']}</th><tr></thead><tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['id'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>");
 			}
 		}
 
@@ -65,7 +65,10 @@ class View{
 		$this->content = ob_get_clean();
 	}
 
-	public function tutoringCreationPage(){
+	public function tutoringCreationPage($tutoringBuilder = ""){
+		if($tutoringBuilder == ""){
+        $tutoringBuilder = new TutoringBuilder();
+      }
 		$this->title = "Créer un tutorat";
 		ob_start();
 		include("templates/tutoring_creation_page.php");
@@ -73,7 +76,6 @@ class View{
 	}
 
 	public function tutoringListPage($data){
-		var_dump($data);
 		$this->title = "Liste de vos tutorats";
 		ob_start();
 		include("templates/tutoring_list_page.php");

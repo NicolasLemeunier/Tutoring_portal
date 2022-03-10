@@ -87,7 +87,7 @@ class Storage{
 	}
 
 	public function readAllTutoring(){
-		$stmt = $this->PDO->query("SELECT category, description, nbMaxStudents, tutor FROM tutoring_website_tutorList");
+		$stmt = $this->PDO->query("SELECT id,category, description, nbMaxStudents, tutor FROM tutoring_website_tutorList");
 
 		$lines = $stmt->fetchAll();
 
