@@ -26,7 +26,7 @@ class Private_view extends View{
 		$categories_list = array();
 
 		$tables = "";
-		echo "<h1>TEST2</h1>";
+
 		foreach($data as $tu){
 			if(isset($tu['status']) && $tu['status'] != "ended"){
 				//POur ne pas avoir des tutorats terminés

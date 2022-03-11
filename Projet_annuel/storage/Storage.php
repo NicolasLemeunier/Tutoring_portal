@@ -185,12 +185,12 @@ class Storage{
 		$stmt->execute($data);
 	}
 
-	public function readRegistered($tutor){
-		$sql = "SELECT student FROM tutoring_website_registered WHERE tutor=:tutor";
+	public function readRegistered($id){
+		$sql = "SELECT * FROM tutoring_website_registered WHERE id_tutoring=:id";
 
 		$stmt = $this->PDO->prepare($sql);
 
-		$data = array(":tutor" => $tutor);
+		$data = array(":id" => $id);
 
 		$stmt->execute($data);
 

@@ -132,12 +132,8 @@ class Controller{
 
 	public function information($id){
 		$data = $this->storage->readTutoringByID($id);
-		if(isset($_SESSION['user'])){
-			$registered = $this->storage->readRegistered($_SESSION['user']->getLogin());
-			$this->view->information($data, $registered);
-		}else{
-			$this->view->information($data);
-		}
+		$registered = $this->storage->readRegistered($id);
+		$this->view->information($data, $registered);
 	}
 
 	public function register($id){
