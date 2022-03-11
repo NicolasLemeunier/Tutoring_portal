@@ -20,7 +20,7 @@ class Storage{
 	}
 
 	public function insertTutoring($category, $description, $nbMaxStudents, $tutor){
-		$sql = "INSERT INTO tutoring_website_tutorList(category, description, nbMaxStudents, tutor) VALUES(:category, :description, :nbMaxStudents, :tutor)";
+		$sql = "INSERT INTO tutoring_website_tutoringList(category, description, nbMaxStudents, tutor) VALUES(:category, :description, :nbMaxStudents, :tutor)";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -30,7 +30,7 @@ class Storage{
 	}
 
 	public function readTutoring($tutor){
-		$sql = "SELECT id, category, description, nbMaxStudents, tutor FROM tutoring_website_tutorList WHERE tutor=:tutor";
+		$sql = "SELECT id, category, description, nbMaxStudents, tutor FROM tutoring_website_tutoringList WHERE tutor=:tutor";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -46,7 +46,7 @@ class Storage{
 	public function readTutoringByID($idTutoring){
 
 		//si par exemple un tuteur à plusieurs tutorats
-		$sql = "SELECT id,category,description,nbMaxStudents,tutor FROM tutoring_website_tutorList WHERE id=:id";
+		$sql = "SELECT id,category,description,nbMaxStudents,tutor FROM tutoring_website_tutoringList WHERE id=:id";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -62,7 +62,7 @@ class Storage{
 	public function readIDTutoring($category,$description,$nbMaxStudents,$tutor){
 
 		//avoir l'ID d'un tutorat précis
-		$sql = "SELECT id FROM tutoring_website_tutorList WHERE category=:category AND description=:description AND nbMaxStudents=:nbMaxStudents AND tutor=:tutor";
+		$sql = "SELECT id FROM tutoring_website_tutoringList WHERE category=:category AND description=:description AND nbMaxStudents=:nbMaxStudents AND tutor=:tutor";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -87,7 +87,7 @@ class Storage{
 	}
 
 	public function readAllTutoring(){
-		$stmt = $this->PDO->query("SELECT id, category, description, nbMaxStudents, tutor FROM tutoring_website_tutorList");
+		$stmt = $this->PDO->query("SELECT id, category, description, nbMaxStudents, tutor FROM tutoring_website_tutoringList");
 
 		$lines = $stmt->fetchAll();
 
@@ -95,7 +95,7 @@ class Storage{
 	}
 
 	public function readAllTutoringFromAPerson($tutor){
-		$sql = "SELECT id, nbMaxStudents, category, tutor FROM tutoring_website_tutorList WHERE tutor=:tutor";
+		$sql = "SELECT id, nbMaxStudents, category, tutor FROM tutoring_website_tutoringList WHERE tutor=:tutor";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -112,7 +112,7 @@ class Storage{
 
 
 	public function research(string $word){
-		$stmt = $this->PDO->query("SELECT category, tutor FROM tutoring_website_tutorList WHERE category LIKE \"$word%\"");
+		$stmt = $this->PDO->query("SELECT category, tutor FROM tutoring_website_tutoringList WHERE category LIKE \"$word%\"");
 
 		$lines = $stmt->fetchAll();
 
@@ -130,7 +130,7 @@ class Storage{
 	}
 
 	public function deleteTutoring($id){
-		$sql = "DELETE FROM tutoring_website_tutorList WHERE id=:id";
+		$sql = "DELETE FROM tutoring_website_tutoringList WHERE id=:id";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -162,7 +162,7 @@ class Storage{
 
 	public function modifyingTutoring($category,$description,$nbMaxStudents,$id){
 		//OK
-		$sql = "UPDATE tutoring_website_tutorList SET category=:category, description=:description, nbMaxStudents=:nbMaxStudents WHERE id=:id";
+		$sql = "UPDATE tutoring_website_tutoringList SET category=:category, description=:description, nbMaxStudents=:nbMaxStudents WHERE id=:id";
 
 		$stmt = $this->PDO->prepare($sql);
 
