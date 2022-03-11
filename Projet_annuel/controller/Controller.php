@@ -197,6 +197,9 @@ class Controller{
 			$this->tutoringList($_SESSION['user']->getLogin());
 		}
 	}
+	public function profil($id){
+		$this->view->profilPage();
+	}
 }
 
 ?>

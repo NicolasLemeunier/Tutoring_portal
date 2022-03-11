@@ -34,7 +34,6 @@ class Router{
 			 case "accueil":
 				 $this->controller->welcomePage();
 			 break;
-
 			 case "connection":
 				 $this->view->connectionPage();
 			 break;
@@ -98,6 +97,10 @@ class Router{
 				case "end":
 					$this->controller->endTutoring($id);
 				break;
+				case "profil":
+					$this->controller->profil($_GET['login']);
+				break;
+
 
 
 
@@ -222,6 +225,10 @@ class Router{
 	public function getStartTutoringURL($id2){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=start&id=$id2";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=start&id=$id2";
+	}
+	public function getProfilURL($login){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=profil&login=$login";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=profil&login=$login";
 	}
 
 

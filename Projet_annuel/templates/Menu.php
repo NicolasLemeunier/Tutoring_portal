@@ -21,6 +21,7 @@ else{
 		echo "<li><a href = {$this->router->getDisconnectionURL()}>Se déconnecter</a></li>";
 	}else{
 		echo "<li><a href = {$this->router->getTutoringListPageURL()}>Liste de vos tutorats</a></li>";
+		echo "<li><a href = {$this->router->getProfilURL($_SESSION['user']->getLogin())}>Profil</a></li>";
 		echo "<li><a href = {$this->router->getDisconnectionURL()}>Se déconnecter</a></li>";
 	}
 

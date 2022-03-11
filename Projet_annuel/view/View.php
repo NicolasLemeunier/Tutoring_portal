@@ -104,9 +104,17 @@ class View{
 		$this->content = ob_get_clean();
 	}
 
+	public function profilPage(){
+		$this->title = "Votre profil";
+		ob_start();
+		include("templates/Profil_page.php");
+		$this->content = ob_get_clean();
+	}
+
 	public function success(){
 		$this->router->POSTredirect($this->router->getWelcomePageURL(), "Success");
 	}
+
 
 
 	public function getMenu(){
