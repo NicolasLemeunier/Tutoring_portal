@@ -92,6 +92,12 @@ class Router{
 				case "leaveTutoring":
 					$this->controller->leaveTutoring($id);
 				break;
+				case "start":
+					$this->controller->startTutoring($id);
+				break;
+				case "end":
+					$this->controller->endTutoring($id);
+				break;
 
 
 
@@ -208,6 +214,14 @@ class Router{
 	public function getLeaveTutoringURL($id2){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=leaveTutoring&id=$id2";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=leaveTutoring&id=$id2";
+	}
+	public function getEndTutoringURL($id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=end&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=end&id=$id2";
+	}
+	public function getStartTutoringURL($id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=start&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=start&id=$id2";
 	}
 
 

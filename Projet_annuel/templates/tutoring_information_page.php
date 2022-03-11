@@ -14,6 +14,7 @@ $isRegistered = false;
 
 $counter = 0;
 var_dump($data);
+var_dump($registered);
 if($registered != null){
 	echo "<table><thead><tr><th>Étudiants inscrits</th></tr></thead><tbody><tr>";
 

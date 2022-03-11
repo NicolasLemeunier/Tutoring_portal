@@ -44,9 +44,9 @@ var_dump($allTutoring);
 
 		if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Tutor"){
 			if($status == "started"){
-				echo "<tr><td>Tutorat en {$key['category']}</td><td>{$status}</td><td><button><a href={$this->router->getTutoringModificationURL($key['id'])}>End Tutoring</a></button><button><a href={$this->router->getTutoringModificationURL($key['id'])}>Modifer</a></button><button><a href={$this->router->getTutoringDeletionURL($key['id'])}>Supprimer</a></button></td></tr>";
-			}else if($status == "not_started"){
-				echo "<tr><td>Tutorat en {$key['category']}</td><td>{$status}</td><td><button><a href={$this->router->getTutoringModificationURL($key['id'])}>Start Tutoring</a></button><button><a href={$this->router->getTutoringModificationURL($key['id'])}>Modifer</a></button><button><a href={$this->router->getTutoringDeletionURL($key['id'])}>Supprimer</a></button></td></tr>";
+				echo "<tr><td>Tutorat en {$key['category']}</td><td>{$status}</td><td><button><a href={$this->router->getEndTutoringURL($key['id'])}>Terminer le tutorat</a></button><button><a href={$this->router->getTutoringModificationURL($key['id'])}>Modifer</a></button><button><a href={$this->router->getTutoringDeletionURL($key['id'])}>Supprimer</a></button></td></tr>";
+			}else if($status == "not_started" || $status == "ended"){
+				echo "<tr><td>Tutorat en {$key['category']}</td><td>{$status}</td><td><button><a href={$this->router->getStartTutoringURL($key['id'])}>Démarrer le tutorat</a></button><button><a href={$this->router->getTutoringModificationURL($key['id'])}>Modifer</a></button><button><a href={$this->router->getTutoringDeletionURL($key['id'])}>Supprimer</a></button></td></tr>";
 			}
 		}else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student"){
 			if($status == "started"){

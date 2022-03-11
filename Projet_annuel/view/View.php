@@ -22,6 +22,7 @@ class View{
 		$categories_list = array();
 
 		$tables = "";
+		echo "<h1>test</h1>";
 		foreach($data as $tu){
 
 			if(array_key_exists($tu['category'], $categories_list))

@@ -60,6 +60,7 @@ class Controller{
 		$data = $this->storage->readAllTutoring();
 
 		$this->view->welcomePage($data);
+		var_dump($data);
 	}
 
 	public function research(string $word){
@@ -177,13 +178,28 @@ class Controller{
  	 	}
 	}
 	public function leaveTutoring($id){
-		//OK
+		//OK - quand un élève choisi de quitter un tutorat
 		$ok = $this->storage->deleteRegisteredStudent($id,$_SESSION['user']->getLogin());
 		if($ok){
-			$this->view->welcomePage();
+			$this->tutoringList($_SESSION['user']->getLogin());
 		}
-		//La fonction n'est plus dans le storage ????
-		//$this->storage->deleteRegistered($tutoringID);
+	}
+
+	public function startTutoring($id){
+		//un tuteur lance un tutorat
+		$ok = $this->storage->startTutoring($id);
+		if($ok){
+			//ouvir le chat plutot
+			$this->tutoringList($_SESSION['user']->getLogin());
+		}
+	}
+
+	public function endTutoring($id){
+		//un tuteur finit un tutorat
+		$ok = $this->storage->endTutoring($id);
+		if($ok){
+			$this->tutoringList($_SESSION['user']->getLogin());
+		}
 	}
 }
 

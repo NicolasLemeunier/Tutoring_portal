@@ -26,11 +26,15 @@ class Private_view extends View{
 		$categories_list = array();
 
 		$tables = "";
+		echo "<h1>TEST2</h1>";
 		foreach($data as $tu){
-			if(array_key_exists($tu['category'], $categories_list))
-				$categories_list[$tu['category']] .= "<tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['id'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>";
-			else{
-				$categories_list = $categories_list + array($tu['category'] => "<table><thead><tr><th>{$tu['category']}</th><tr></thead><tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['id'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>");
+			if(isset($tu['status']) && $tu['status'] != "ended"){
+				//POur ne pas avoir des tutorats terminés
+				if(array_key_exists($tu['category'], $categories_list)){
+					$categories_list[$tu['category']] .= "<tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['id'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>";
+				}else{
+					$categories_list = $categories_list + array($tu['category'] => "<table><thead><tr><th>{$tu['category']}</th><tr></thead><tbody></tr><td><button><a href={$this->router->getTutoringInformationPageURL($tu['id'])}>Tutorat de {$tu['tutor']}</a></button></td></tr></tbody>");
+				}
 			}
 		}
 

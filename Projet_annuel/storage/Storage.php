@@ -236,6 +236,31 @@ class Storage{
 
 		$stmt->execute($data);
 	}
+
+	public function startTutoring($id){
+		$sql = "UPDATE tutoring_website_tutoringList SET status=:status WHERE id=:id";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":status" => "started", ":id" => $id);
+
+		$stmt->execute($data);
+
+		return true;
+
+	}
+	public function endTutoring($id){
+		$sql = "UPDATE tutoring_website_tutoringList SET status=:status WHERE id=:id";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":status" => "ended", ":id" => $id);
+
+		$stmt->execute($data);
+
+		return true;
+	}
+
 }
 
 ?>
