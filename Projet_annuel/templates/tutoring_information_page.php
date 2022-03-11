@@ -13,7 +13,7 @@ echo "<h4>Description :</h4> {$data['description']} </br>";
 $isRegistered = false;
 
 $counter = 0;
-
+var_dump($data);
 if($registered != null){
 	echo "<table><thead><tr><th>Étudiants inscrits</th></tr></thead><tbody><tr>";
 

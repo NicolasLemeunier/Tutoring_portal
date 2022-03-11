@@ -139,12 +139,12 @@ class Storage{
 		$stmt->execute($data);
 	}
 
-	public function deleteTutoringStudents($category, $tutor){
-		$sql = "DELETE FROM tutoring_website_registered WHERE category=:category AND tutor=:tutor";
+	public function deleteTutoringStudents($id_tutoring){
+		$sql = "DELETE FROM tutoring_website_registered WHERE id_tutoring=:id_tutoring";
 
 		$stmt = $this->PDO->prepare($sql);
 
-		$data = array(":category" => $category, ":tutor" => $tutor);
+		$data = array(":id_tutoring" => $id_tutoring);
 
 		$stmt->execute($data);
 	}
@@ -225,6 +225,16 @@ class Storage{
 		$lines = $stmt->fetchAll();
 
 		return $lines;
+	}
+
+	public function deleteRegisteredStudent($id_tutoring,$login){
+		$sql = "DELETE FROM tutoring_website_registered WHERE id_tutoring=:id_tutoring AND student=:login";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":id_tutoring" => $id_tutoring, ":login" => $login);
+
+		$stmt->execute($data);
 	}
 }
 

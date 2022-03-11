@@ -147,8 +147,7 @@ class Controller{
 
 	public function tutoringDeletion($tutoringID){
 		$this->storage->deleteTutoring($tutoringID);
-		//La fonction n'est plus dans le storage ????
-		//$this->storage->deleteRegistered($tutoringID);
+		$this->storage->deleteTutoringStudents($tutoringID);
 		$this->welcomePage();
 	}
 
@@ -178,6 +177,11 @@ class Controller{
  	 	}
 	}
 	public function leaveTutoring($id){
+		//OK
+		$ok = $this->storage->deleteRegisteredStudent($id,$_SESSION['user']->getLogin());
+		if($ok){
+			$this->view->welcomePage();
+		}
 		//La fonction n'est plus dans le storage ????
 		//$this->storage->deleteRegistered($tutoringID);
 	}
