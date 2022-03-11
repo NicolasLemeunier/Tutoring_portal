@@ -105,12 +105,11 @@ class Controller{
 
 			if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Tutor"){
 				$data = $this->storage->readAllTutoringFromAPerson($login);
-			}
-
-			if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student")
+			}else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student"){
 				$data = $this->storage->readStudentTutoring($login);
-
-			$this->view->tutoringListPage($data);
+			}
+			$allTutoring = $this->storage->readAllTutoring();
+			$this->view->tutoringListPage($data,$allTutoring);
 	}
 
 
@@ -142,8 +141,7 @@ class Controller{
 
 	public function register($id){
 		$data = $this->storage->readTutoringByID($id);
-
-		$this->storage->register($data['category'], $_SESSION['user']->getLogin(), $data['tutor']);
+		$this->storage->register($data['category'], $_SESSION['user']->getLogin(), $data['tutor'], $id);
 		$this->tutoringList($_SESSION['user']->getLogin());
 	}
 

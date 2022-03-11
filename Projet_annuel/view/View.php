@@ -81,7 +81,7 @@ class View{
 		$this->content = ob_get_clean();
 	}
 
-	public function tutoringListPage($data){
+	public function tutoringListPage($data,$allTutoring){
 		$this->title = "Liste de vos tutorats";
 		ob_start();
 		include("templates/tutoring_list_page.php");
