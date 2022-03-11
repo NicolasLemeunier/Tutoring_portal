@@ -11,11 +11,12 @@ echo "<h2>".$text."</h2>
 			<tr>
 				<th>Tutorats</th>";
 				if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student"){
-					echo "<th>A débuter ?</th>";
+					echo "<th>Tuteur</th><th>A débuter ?</th>";
 				}else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Tutor"){
-					echo "<th>Actions</th>";
+					//echo "<th>Actions</th>";
 				}
 echo"
+		<th>Actions</th>
 			</tr>
 		</thead>
 
@@ -23,12 +24,12 @@ echo"
 
 	";
 //
-//var_dump($data);
+var_dump($data);
 	foreach ($data as $key) {
 		if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Tutor"){
 			echo "<tr><td>Tutorat en {$key['category']}</td><td><button><a href={$this->router->getTutoringModificationURL($key['id'])}>Modifer</a></button><button><a href={$this->router->getTutoringDeletionURL($key['id'])}>Supprimer</a></button></td></tr>";
 		}else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student"){
-			echo "<tr><td>Tutorat en {$key['category']}</td><td>Non</td><td><button><a href={$this->router->getLeaveTutoringURL($key['category'])}>Quitter</a></button></td></tr>";
+			echo "<tr><td>Tutorat en {$key['category']}</td><td>{$key['tutor']}</td><td>Non (besoin d'un attribut start)</td><td><button><a href={$this->router->getTutoringPageURL()}>Voir</a></button><button><a href={$this->router->getLeaveTutoringURL($key['category'])}>Quitter</a></button></td></tr>";
 		}
 	}
 
