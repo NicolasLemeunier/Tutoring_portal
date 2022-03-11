@@ -46,7 +46,7 @@ class Storage{
 	public function readTutoringByID($idTutoring){
 
 		//si par exemple un tuteur à plusieurs tutorats
-		$sql = "SELECT category,description,nbMaxStudents,tutor FROM tutoring_website_tutorList WHERE id=:id";
+		$sql = "SELECT id,category,description,nbMaxStudents,tutor FROM tutoring_website_tutorList WHERE id=:id";
 
 		$stmt = $this->PDO->prepare($sql);
 
@@ -87,7 +87,7 @@ class Storage{
 	}
 
 	public function readAllTutoring(){
-		$stmt = $this->PDO->query("SELECT id,category, description, nbMaxStudents, tutor FROM tutoring_website_tutorList");
+		$stmt = $this->PDO->query("SELECT id, category, description, nbMaxStudents, tutor FROM tutoring_website_tutorList");
 
 		$lines = $stmt->fetchAll();
 

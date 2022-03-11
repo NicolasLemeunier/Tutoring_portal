@@ -28,7 +28,12 @@ if($registered != null){
 	echo "</tr></tbody></table></br>";
 	}
 
-if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student" && $isRegistered == false && $counter != $data['nbMaxStudents'])
-	echo "<button><a href={$this->router->getRegisterURL($data['category'], $data['tutor'])}>S'inscrire à ce tutorat</a></button>"
-
+if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student" && $isRegistered == false && $counter != $data['nbMaxStudents']){
+	echo "<button><a href={$this->router->getRegisterURL($data['id'])}>S'inscrire à ce tutorat</a></button>";
+}else if(!isset($_SESSION['user'])){
+	echo "<button><a href={$this->router->getConnectionPageURL()}>Connecter vous pour vous inscrire à ce tutorat</a></button>";
+}
+else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student" && $isRegistered){
+	echo "<button><a href={$this->router->getRegisterURL($data['category'], $data['tutor'])}>Le tutorat n'as pas encore commencer</a></button>";
+}
 ?>

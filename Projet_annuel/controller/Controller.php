@@ -132,12 +132,18 @@ class Controller{
 
 	public function information($id){
 		$data = $this->storage->readTutoringByID($id);
-		$registered = $this->storage->readRegistered($_SESSION['user']->getLogin());
-		$this->view->information($data, $registered);
+		if(isset($_SESSION['user'])){
+			$registered = $this->storage->readRegistered($_SESSION['user']->getLogin());
+			$this->view->information($data, $registered);
+		}else{
+			$this->view->information($data);
+		}
 	}
 
-	public function register($category, $tutor){
-		$this->storage->register($category, $_SESSION['user']->getLogin(), $tutor);
+	public function register($id){
+		$data = $this->storage->readTutoringByID($id);
+
+		$this->storage->register($data['category'], $_SESSION['user']->getLogin(), $data['tutor']);
 		$this->tutoringList($_SESSION['user']->getLogin());
 	}
 
@@ -173,9 +179,9 @@ class Controller{
  	 		}
  	 	}
 	}
-
-	public function adminTutoring(){
-
+	public function leaveTutoring($id){
+		//La fonction n'est plus dans le storage ????
+		//$this->storage->deleteRegistered($tutoringID);
 	}
 }
 

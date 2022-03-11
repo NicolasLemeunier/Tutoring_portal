@@ -88,7 +88,7 @@ class View{
 		$this->content = ob_get_clean();
 	}
 
-	public function information($data, $registered){
+	public function information($data, $registered = ""){
 		$this->title = "Page d'informations";
 		ob_start();
 		include("templates/tutoring_information_page.php");

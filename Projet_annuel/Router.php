@@ -72,10 +72,10 @@ class Router{
 					$this->controller->tutoringList($_SESSION['user']->getLogin());
  				break;
 				case "information":
-					$this->controller->information($_GET['id']);
+					$this->controller->information($id);
  				break;
 				case "register_A":
-					$this->controller->register($_GET['category'], $_GET['tutor']);
+					$this->controller->register($id);
  				break;
 				case "tutoringDeletion":
 					$this->controller->tutoringDeletion($id);
@@ -89,6 +89,10 @@ class Router{
 				case "adminTutoring":
 					$this->controller->adminPageTutoring();
 				break;
+				case "leaveTutoring":
+					$this->controller->leaveTutoring($id);
+				break;
+
 
 
 			 default:
@@ -180,9 +184,9 @@ class Router{
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=information&id=$id";
 	}
 
-	public function getRegisterURL($category, $tutor){
-		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=register_A&tutor=$tutor&category=$category";
-		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=register_A&tutor=$tutor";
+	public function getRegisterURL($id){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=register_A&id=&id";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=register_A&id=$id";
 	}
 
 	public function getTutoringDeletionURL($id2){
@@ -197,10 +201,13 @@ class Router{
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=tutoringModified&id=$id2";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=tutoringModified&id=$id2";
 	}
-
 	public function getAdminTutoringPageURL(){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=adminTutoring";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=adminTutoring";
+	}
+	public function getLeaveTutoringURL($id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=leaveTutoring&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=leaveTutoring&id=$id2";
 	}
 
 
