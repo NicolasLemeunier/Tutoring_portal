@@ -9,7 +9,7 @@ echo "<h4>Catégorie :</h4> {$data['category']} </br>";
 
 echo "<h4>Tuteur :</h4> {$data['tutor']} </br>";
 
-echo "<h4>Nombre d'étudiant maximum pouvant suivre ce tutorat et places restantes :</h4> {$nbEtudiantsInscrits}(étudiants inscrits) / {$data['nbMaxStudents']}(nombre maximum de places) => {$placesRestantes} places disponibles</br>";
+echo "<h4>Places restantes :</h4> {$nbEtudiantsInscrits}(étudiants inscrits) / {$data['nbMaxStudents']}(nombre maximum de places) => {$placesRestantes} places disponibles</br>";
 
 echo "<h4>Description :</h4> {$data['description']} </br>";
 
@@ -25,11 +25,13 @@ if($registered != null){
 	echo "<table><thead><tr><th>Étudiants inscrits :</th></tr></thead><tbody><tr>";
 
 	foreach ($registered as $key) {
-		if($key['student'] == $_SESSION['user']->getLogin()){
-			$isRegistered = true;
-			echo "<th>{$key['student']} (vous), </th>";
-		}else{
-			echo "<th>{$key['student']}, </th>";
+		if(isset($_SESSION['user'])){
+			if($key['student'] == $_SESSION['user']->getLogin()){
+				$isRegistered = true;
+				echo "<th>{$key['student']} (vous), </th>";
+			}else{
+				echo "<th>{$key['student']}, </th>";
+			}
 		}
 	}
 

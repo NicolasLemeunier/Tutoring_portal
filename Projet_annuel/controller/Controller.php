@@ -60,7 +60,7 @@ class Controller{
 		$data = $this->storage->readAllTutoring();
 
 		$this->view->welcomePage($data);
-		var_dump($data);
+		//var_dump($data);
 	}
 
 	public function research(string $word){

@@ -1,11 +1,20 @@
 <?php
 
+$text2 = "";
+
 if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student"){
-	$text = "Tous les tutorats auquel vous vous êtes inscrit, ".$_SESSION['user']->getLogin();
+	if($data != null){
+		$text = "Tous les tutorats auquel vous vous êtes inscrit, ".$_SESSION['user']->getLogin();
+	}else{
+		$text = "Vous n'êtes inscrits à aucun tutorat, ".$_SESSION['user']->getLogin();
+		$text2 = "Voir tous les tutorats => <button><a href={$this->router->getWelcomePageURL()}>acceuil</a></button></h5>";
+	}
+
 }else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Tutor"){
 	$text = "Tous les tutorats que vous avez créer, ".$_SESSION['user']->getLogin();
 }
 echo "<h2>".$text."</h2>
+			<p>".$text2."</p>
 	<table>
 		<thead>
 			<tr>
@@ -23,10 +32,9 @@ echo"
 		<tbody>
 
 	";
-//
 
-var_dump($data);
-var_dump($allTutoring);
+//var_dump($data);
+//var_dump($allTutoring);
 	foreach ($data as $key) {
 		$status = "started";
 		//$status = "unknown_ID";
