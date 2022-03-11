@@ -100,9 +100,9 @@ class Router{
 				case "profil":
 					$this->controller->profil($_GET['login']);
 				break;
-
-
-
+				case "chat":
+					$this->controller->chat($id);
+				break;
 
 			 default:
 				// L'internaute a demandé une action non prévue.
@@ -229,6 +229,10 @@ class Router{
 	public function getProfilURL($login){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=profil&login=$login";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=profil&login=$login";
+	}
+	public function getChatURL($id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=chat&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=chat&id=$id2";
 	}
 
 

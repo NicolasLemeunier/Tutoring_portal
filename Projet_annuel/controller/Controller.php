@@ -197,8 +197,13 @@ class Controller{
 			$this->tutoringList($_SESSION['user']->getLogin());
 		}
 	}
-	public function profil($id){
+	public function profil($login){
 		$this->view->profilPage();
+	}
+
+	public function chat($id){
+		$this->view->chatPage();
+
 	}
 }
 

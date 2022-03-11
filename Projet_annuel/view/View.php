@@ -110,6 +110,12 @@ class View{
 		include("templates/Profil_page.php");
 		$this->content = ob_get_clean();
 	}
+	public function chatPage(){
+		$this->title = "Chat du tutorat";
+		ob_start();
+		include("templates/Chat_page.php");
+		$this->content = ob_get_clean();
+	}
 
 	public function success(){
 		$this->router->POSTredirect($this->router->getWelcomePageURL(), "Success");
