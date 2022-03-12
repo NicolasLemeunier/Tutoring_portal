@@ -44,15 +44,18 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
 
 <div id="dialog" title="<?php echo $titre; ?>">
 <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-<script src="scripts.js"></script>
-  <?php
+<?php
       if($status == "tutor"){
         foreach ($studentRegistered as $key => $student) {
-          echo "{$student['student']}";
-          echo "<div class='stars'>
-              		<i class='lar la-star' data-value='1'></i><i class='lar la-star' data-value='2'></i><i class='lar la-star' data-value='3'></i><i class='lar la-star' data-value='4'></i><i class='lar la-star' data-value='5'></i>
-                </div>
-                <input type='hidden' name='note' id='note' value='0'>";
+          echo "<form action={$this->router->getTutoringListPageURL()} method=\"post\">
+                    <div class='stars'>
+                    <a title='Voir profil de {$student['student']}' href=".$this->router->getProfilURL($student['student'])."><b>".$student['student']."</b></a>
+                		<i class='lar la-star' data-value='1'></i><i class='lar la-star' data-value='2'></i><i class='lar la-star' data-value='3'></i><i class='lar la-star' data-value='4'></i><i class='lar la-star' data-value='5'></i>
+                  </div>
+                  <input type='hidden' name='note' id='note' value='0'>
+                  <button type=\"submit\">Valider</button>
+                </form>";
+
         }
       }
       else if($status == "student"){
@@ -62,8 +65,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
               </div>
               <input type='hidden' name='note' id='note' value='0'>";
             }
-      }
 
    ?>
-
+<script src="scripts.js"></script>
 </div>

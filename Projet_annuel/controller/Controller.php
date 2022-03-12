@@ -103,11 +103,14 @@ class Controller{
 
 	public function tutoringList($login){
 			$data = array();
-
+			var_dump($_POST);
 			if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Tutor"){
 				$data = $this->storage->readAllTutoringFromAPerson($login);
 			}else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student"){
 				$data = $this->storage->readStudentTutoring($login);
+			}
+			if(isset($_POST['value'])){
+				//on a une valeur pour la notation
 			}
 			$allTutoring = $this->storage->readAllTutoring();
 			$this->view->tutoringListPage($data,$allTutoring);
@@ -208,7 +211,7 @@ class Controller{
 		$data = $this->storage->readRegistered($id);//tous les étudiants inscrit à ce tutorat pour les notés
 		$this->view->endedTutoring($data);
 			//$this->tutoringList($_SESSION['user']->getLogin());
-		
+
 	}
 
 	public function profil($id){

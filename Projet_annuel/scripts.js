@@ -1,5 +1,3 @@
-
-
 window.onload = () =>{
 
   const stars = document.querySelectorAll(".la-star");
