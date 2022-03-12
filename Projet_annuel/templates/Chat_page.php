@@ -1,16 +1,13 @@
 <?php
 
 $deco = $this->router->getTutoringListPageURL();
-//$ended = $this->router->getEndedTutoringURL($data['id']);
-
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-$filename = "logs/log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
-//var_dump($data);
+$filename = "logs/log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencier les chats)
 
 if(isset($_SESSION['user'])){
-  // AFFICHE TROP DE FOIS 'a rejoint le chat'!!! A REGLER !!!!
+  //OK message 'a rejoint le chat'
   $txt = "";
-  //if(isset($_POST['text']) && $_POST['text'] == ""){
+  if(!isset($_POST['text'])){
     if($_SESSION['user']->getStatus()=="Tutor"){
       $txt = "Le tuteur";
     }else if($_SESSION['user']->getStatus()=="Student"){
@@ -18,7 +15,7 @@ if(isset($_SESSION['user'])){
     }
     $login_message = "<div class='msgln'><span style='color:green' class='in-info'>{$txt} <a style='color:green' title='Voir profil de {$_SESSION['user']->getLogin()}' href=".$this->router->getProfilURL($_SESSION['user']->getID())."><b>".$_SESSION['user']->getLogin()."</b></a> a rejoint le chat</span><br></div>";
     file_put_contents($filename, $login_message, FILE_APPEND);
-    //}
+  }
 }
 ?>
 
@@ -49,7 +46,6 @@ if(isset($_SESSION['user'])){
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 <script type="text/javascript">
  // jQuery Document :
-
 
  $(document).ready(function(){
    $("#exit").click(function(){
@@ -103,7 +99,7 @@ setInterval (loadLog, 1000);// update tous les : 1000 = 1s
         }
         $logout_message = "<div class='msgln'><span style='color:red' class='left-info'>{$txt} <a title='Voir profil de {$_SESSION['user']->getLogin()}' href=".$this->router->getProfilURL($_SESSION['user']->getID())."><b class='user-name-left'>".$_SESSION['user']->getLogin()."</b></a> a quitté le chat</span><br></div>";
        file_put_contents($filename, $logout_message, FILE_APPEND | LOCK_EX);
-       header("Location: $deco"); //Redirect the user
+       header("Location: $deco"); //Redirection user
  }
 
 //OK
