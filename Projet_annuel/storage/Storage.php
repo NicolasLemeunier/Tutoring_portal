@@ -9,12 +9,12 @@ class Storage{
 		$this->PDO->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}
 
-	public function insertAccount($login, $password, $status){
-		$sql = "INSERT INTO tutoring_website_accounts(login, password, status) VALUES(:login, :password, :status)";
+	public function insertAccount($login, $password, $status, $email){
+		$sql = "INSERT INTO tutoring_website_accounts(login, password, status, email) VALUES(:login, :password, :status, :email)";
 
 		$stmt = $this->PDO->prepare($sql);
 
-		$data = array(":login" => $login, ":password" => $password, ":status" => $status);
+		$data = array(":login" => $login, ":password" => $password, ":status" => $status, ":email" => $email);
 
 		$stmt->execute($data);
 	}

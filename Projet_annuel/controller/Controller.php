@@ -41,7 +41,7 @@ class Controller{
 		else{
 			$hash = password_hash(htmlspecialchars($data['Password']), PASSWORD_BCRYPT);
 
-			$this->storage->insertAccount(htmlspecialchars($data['Login']), $hash, $data['Status']);
+			$this->storage->insertAccount(htmlspecialchars($data['Login']), $hash, $data['Status'],$data['Email']);
 
 			$array = array('Login' => htmlspecialchars($data['Login']), 'Password' => htmlspecialchars($data['Password']));
 

@@ -48,6 +48,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
       if($status == "tutor"){
         foreach ($studentRegistered as $key => $student) {
           //marche que si ya un seul étudiant
+          //ne sert à rien de noté les étudiant et trop dur à faire
           /*
           echo "<form action={$this->router->getTutoringListPageURL()} method=\"post\">
                     <div class='stars'>
@@ -64,7 +65,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
       else if($status == "student"){
         echo "<form action={$this->router->getTutoringListPageURL()} method=\"post\">
                   <div class='stars'>
-                  <a title='Voir profil de {$studentRegistered[0]['tutor']}' href=".$this->router->getProfilURL($studentRegistered[0]['tutor'])."><b>".$studentRegistered[0]['tutor']."</b></a>
+                  <a title='Voir profil de {$studentRegistered[0]['tutor']}' href=".$this->router->getProfilURLLogin($studentRegistered[0]['tutor'])."><b>".$studentRegistered[0]['tutor']."</b></a>
                   <i class='lar la-star' data-value='1'></i><i class='lar la-star' data-value='2'></i><i class='lar la-star' data-value='3'></i><i class='lar la-star' data-value='4'></i><i class='lar la-star' data-value='5'></i>
                 </div>
                 <input type='hidden' name='note' id='note' value='0'>
