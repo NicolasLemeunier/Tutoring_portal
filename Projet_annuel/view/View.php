@@ -104,7 +104,7 @@ class View{
 		$this->content = ob_get_clean();
 	}
 
-	public function profilPage($data){
+	public function profilPage($data, $marks =""){
 		$this->title = "Profil de {$data['login']}";
 		ob_start();
 		include("templates/Profil_page.php");

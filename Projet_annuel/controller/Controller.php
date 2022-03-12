@@ -113,7 +113,9 @@ class Controller{
 				if(isset($_POST['student'])){
 					//on note les élves
 				}else if(isset($_POST['tutor'])){
-					//on note le tuteur
+					//on note le prof
+					$id = $this->storage->readAccountsByLogin($_POST['tutor']);
+					$this->storage->insertMark($id['id'],$_POST['tutor'],$_POST['note']);
 				}
 			}
 			$allTutoring = $this->storage->readAllTutoring();
@@ -220,7 +222,8 @@ class Controller{
 
 	public function profil($id){
 		$data = $this->storage->readAccountsById($id);
-		$this->view->profilPage($data);
+		$marks = $this->storage->readMarksByID($id);
+		$this->view->profilPage($data,$marks);
 	}
 
 	public function chat($id){

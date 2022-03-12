@@ -99,6 +99,20 @@ class Storage{
 
 		return $line;
 	}
+	public function readAccountsByLogin($login){
+
+		$sql = "SELECT * FROM tutoring_website_accounts WHERE login=:login";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":login" => $login);
+
+		$stmt->execute($data);
+
+		$line = $stmt->fetch();
+
+		return $line;
+	}
 
 	public function readAllTutoring(){
 		$stmt = $this->PDO->query("SELECT * FROM tutoring_website_tutoringList");
@@ -273,6 +287,29 @@ class Storage{
 		$stmt->execute($data);
 
 		return true;
+	}
+	public function insertMark($id,$login,$note){
+		$sql = "INSERT INTO tutoring_website_marks (id, login, mark) VALUES (:id, :login, :mark)";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":id" => $id, ":login" => $login, ":mark" => $note);
+
+		$stmt->execute($data);
+		return true;
+	}
+	public function readMarksByID($id){
+		$sql = "SELECT * FROM tutoring_website_marks WHERE id=:id";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":id" => $id);
+
+		$stmt->execute($data);
+
+		$lines = $stmt->fetchAll();
+
+		return $lines;
 	}
 
 }

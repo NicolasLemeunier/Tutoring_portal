@@ -1,6 +1,8 @@
 <?php
 
 $deco = $this->router->getTutoringListPageURL();
+$ended = $this->router->getEndedTutoringURL($data['id']);
+
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $filename = "logs/log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
 var_dump($data);
@@ -52,7 +54,7 @@ if(isset($_SESSION['user'])){
  $(document).ready(function(){
    $("#exit").click(function(){
             var exit = confirm("Quitter le chat ?");
-            if(exit==true){window.location = '<?php echo "$url";?>&logout=true';}
+            if(exit==true){window.location = '<?php echo "$ended";?>&logout=true';}
       });
  });
  //If user submits the form
@@ -72,7 +74,6 @@ if(isset($_SESSION['user'])){
   			cache: false,
   			success: function(html){
   				$("#chatbox").html(html); //Insert chat log into the #chatbox div
-
   				//Auto-scroll
   				var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
   				if(newscrollHeight > oldscrollHeight){
@@ -80,7 +81,7 @@ if(isset($_SESSION['user'])){
   				    }
   		  	},
           error: function(){
-            window.location = '<?php echo "$url";?>&logout=true';
+            window.location = '<?php echo "$url";?>&end';
           },
   		});
   	}
@@ -91,9 +92,6 @@ setInterval (loadLog, 1000);// update tous les : 1000 = 1s
 
  <?php
 
-if(!file_exists($filename)){
-  header("Location: $deco"); //Redirect the user
-}
 //OK
  if(isset($_GET['logout'])){
         //Simple exit message
@@ -115,13 +113,6 @@ if(!file_exists($filename)){
      fwrite($fp, "<div class='msgln'>(".date("H:i:s").") <a title='Voir profil de {$_SESSION['user']->getLogin()}' href=".$this->router->getProfilURL($_SESSION['user']->getID())."><b>".$_SESSION['user']->getLogin()."</b></a>: ".stripslashes(htmlspecialchars($text))."<br></div>");
      fclose($fp);
    }
- }
-//la data ne va jamais changé alors il faut faire une recherche dans la base
- if($data['status'] == "ended"){
-   //si le tuteur mets fin au tutorat il faut leur faire quitter la page et noté le tuteur
-   $end = $this->router->getEndedTutoringURL($data['id']);
-   //header("Location : $go");
-   header("Location: $end"); //Redirect the user
  }
 
 ?>
