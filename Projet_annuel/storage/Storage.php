@@ -263,6 +263,7 @@ class Storage{
 		$data = array(":id_tutoring" => $id_tutoring, ":login" => $login);
 
 		$stmt->execute($data);
+		return true;
 	}
 
 	public function startTutoring($id){

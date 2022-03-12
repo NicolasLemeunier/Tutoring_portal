@@ -95,7 +95,7 @@ setInterval (loadLog, 1000);// update tous les : 1000 = 1s
 
 //OK
  if(isset($_GET['logout'])){
-        //Simple exit message
+        //Message de déconnexion
         if($_SESSION['user']->getStatus()=="Tutor"){
           $txt = "Le tuteur";
         }else{
@@ -106,9 +106,9 @@ setInterval (loadLog, 1000);// update tous les : 1000 = 1s
        header("Location: $deco"); //Redirect the user
  }
 
-
+//OK
  if(isset($_SESSION['user'])){
-
+   //pour écrore le message dans le log
    if(isset($_POST['text']) && $_POST['text'] != ""){
      $text = $_POST['text'];
      $fp = fopen($filename, 'a');

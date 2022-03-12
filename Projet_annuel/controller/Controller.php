@@ -103,7 +103,7 @@ class Controller{
 
 	public function tutoringList($login){
 			$data = array();
-			var_dump($_POST);
+			//var_dump($_POST);
 			if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Tutor"){
 				$data = $this->storage->readAllTutoringFromAPerson($login);
 			}else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student"){
@@ -202,22 +202,19 @@ class Controller{
 		//un tuteur finit un tutorat
 		$ok = $this->storage->endTutoring($id);
 		if($ok){
-			$data = $this->storage->readRegistered($id);//tous les étudiants inscrit à ce tutorat pour les notés
-			$this->view->endedTutoring($data);
-			//$this->tutoringList($_SESSION['user']->getLogin());
+			$this->tutoringList($_SESSION['user']->getLogin());
+			//on supprime le fichier log (le chat se remets à 0)
+			$filename = "logs/log".$id.".html";
+			if(file_exists($filename)){
+				unlink($filename);
+			}
 		}
-		//on supprime le fichier log (le chat se remets à 0)
-		$filename = "logs/log".$id.".html";
-		if(file_exists($filename)){
-			unlink($filename);
-		}
+
 	}
 	public function endedTutoring($id){
-
-		$data = $this->storage->readRegistered($id);//tous les étudiants inscrit à ce tutorat pour les notés
+		//tous les étudiants inscrit à ce tutorat note le tuteur
+		$data = $this->storage->readRegistered($id);
 		$this->view->endedTutoring($data);
-			//$this->tutoringList($_SESSION['user']->getLogin());
-
 	}
 
 	public function profil($id,$login){

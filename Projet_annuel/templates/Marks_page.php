@@ -1,6 +1,6 @@
 <?php
 
-var_dump($studentRegistered);
+//var_dump($studentRegistered);
 
 if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
   $titre = "Noter vos élèves";
@@ -27,11 +27,14 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
 
    $( "#dialog" ).dialog({
       autoOpen: true,
-      height: 400,
-      width: 350,
+      height: 150,
+      width: 200,
       modal: true,
       button : {
         "J'ai finis" : finish
+      },
+      close: function(){
+        window.location = '<?php echo $this->router->getTutoringListPageURL(); ?>';
       }
    });
 });
@@ -45,11 +48,11 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
 <div id="dialog" title="<?php echo $titre; ?>">
 <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 <?php
-      if($status == "tutor"){
+      /*if($status == "tutor"){
         foreach ($studentRegistered as $key => $student) {
           //marche que si ya un seul étudiant
           //ne sert à rien de noté les étudiant et trop dur à faire
-          /*
+
           echo "<form action={$this->router->getTutoringListPageURL()} method=\"post\">
                     <div class='stars'>
                     <a title='Voir profil de {$student['student']}' href=".$this->router->getProfilURL($student['student'])."><b>".$student['student']."</b></a>
@@ -59,10 +62,10 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
                   <input type='hidden' name='student' id='student' value='{$student['student']}'>
                   <button type=\"submit\">Valider</button>
                 </form>";
-                  */
+
         }
-      }
-      else if($status == "student"){
+      }*/
+      if($status == "student"){
         echo "<form action={$this->router->getTutoringListPageURL()} method=\"post\">
                   <div class='stars'>
                   <a title='Voir profil de {$studentRegistered[0]['tutor']}' href=".$this->router->getProfilURLLogin($studentRegistered[0]['tutor'])."><b>".$studentRegistered[0]['tutor']."</b></a>
@@ -70,7 +73,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
                 </div>
                 <input type='hidden' name='note' id='note' value='0'>
                 <input type='hidden' name='tutor' id='tutor' value='{$studentRegistered[0]['tutor']}'>
-                <button type=\"submit\">Valider</button>
+                <button class='btn' type=\"submit\">Valider</button>
               </form>";
           }
 

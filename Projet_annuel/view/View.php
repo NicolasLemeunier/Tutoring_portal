@@ -117,7 +117,7 @@ class View{
 		$this->content = ob_get_clean();
 	}
 	public function endedTutoring($studentRegistered){
-		$this->title = "Noter le tuteur ou les élèves";
+		$this->title = "Noter le tuteur ";
 		ob_start();
 		include("templates/Marks_page.php");
 		$this->content = ob_get_clean();

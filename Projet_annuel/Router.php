@@ -95,6 +95,7 @@ class Router{
 					$this->controller->startTutoring($id);
 				break;
 				case "end":
+				//pour le tuteur
 					$this->controller->endTutoring($id);
 				break;
 				case "profil":
