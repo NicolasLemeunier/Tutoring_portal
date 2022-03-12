@@ -196,6 +196,9 @@ class Controller{
 		if($ok){
 			$this->tutoringList($_SESSION['user']->getLogin());
 		}
+		//on supprime le fichier log (le chat se remets à 0)
+		$filename = "logs/log".$id.".html";
+		unlink($filename);
 	}
 	public function profil($login){
 		$this->view->profilPage();
