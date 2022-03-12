@@ -16,7 +16,7 @@ class Controller{
 		foreach($this->storage->readAllAccounts() as $key){
 			if($key['login'] == $data['Login']){
 				if(password_verify($data['Password'], $key['password'])){
-					$_SESSION['user'] = new Account($data['Login'], $key['password'], $key['status']);
+					$_SESSION['user'] = new Account($data['Login'], $key['password'], $key['status'],$key['id']);
 				 	$this->view->success();
 
 				 	return true;
@@ -185,7 +185,6 @@ class Controller{
 		//un tuteur lance un tutorat
 		$ok = $this->storage->startTutoring($id);
 		if($ok){
-			//ouvir le chat plutot
 			$this->tutoringList($_SESSION['user']->getLogin());
 		}
 	}
@@ -198,10 +197,14 @@ class Controller{
 		}
 		//on supprime le fichier log (le chat se remets à 0)
 		$filename = "logs/log".$id.".html";
-		unlink($filename);
+		if(file_exists($filename)){
+			unlink($filename);
+		}
 	}
-	public function profil($login){
-		$this->view->profilPage();
+
+	public function profil($id){
+		$data = $this->storage->readAccountsById($id);
+		$this->view->profilPage($data);
 	}
 
 	public function chat($id){

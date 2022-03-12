@@ -4,10 +4,9 @@ $deco = $this->router->getTutoringListPageURL();
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $filename = "logs/log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
 //var_dump($data);
-//echo "<h1>{$url}&logout=true</h1>"; //OK
 
 if(isset($_SESSION['user'])){
-  //Simple entry message
+  // AFFICHE TROP DE FOIS 'a rejoint le chat'!!! A REGLER !!!!
   $txt = "";
   //if(isset($_POST['text']) && $_POST['text'] == ""){
     if($_SESSION['user']->getStatus()=="Tutor"){
@@ -24,7 +23,7 @@ if(isset($_SESSION['user'])){
  <div id="wrapper">
    <div id="menu">
          <p class="welcome"><?php echo "Bienvenue {$_SESSION['user']->getLogin()} au tutorat {$data['category']}";?><b></b></p>
-         <p class="logout"><a id="exit" href='<?php echo "$url";?>&logout=true'>Quitter le Chat</a></p>
+         <p class="logout"><a id="exit" href='#'>Quitter le Chat</a></p>
          <div style="clear:both"></div>
      </div>
 
@@ -107,7 +106,7 @@ setInterval (loadLog, 1000);// update tous les : 1000 = 1s
    if(isset($_POST['text']) && $_POST['text'] != ""){
      $text = $_POST['text'];
      $fp = fopen($filename, 'a');
-     fwrite($fp, "<div class='msgln'>(".date("H:i:s").") <b>".$_SESSION['user']->getLogin()."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>");
+     fwrite($fp, "<div class='msgln'>(".date("H:i:s").") <a href=".$this->router->getProfilURL($_SESSION['user']->getID())."><b>".$_SESSION['user']->getLogin()."</b></a>: ".stripslashes(htmlspecialchars($text))."<br></div>");
      fclose($fp);
    }
  }

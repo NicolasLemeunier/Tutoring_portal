@@ -85,6 +85,20 @@ class Storage{
 
 		return $lines;
 	}
+	public function readAccountsById($id){
+
+		$sql = "SELECT * FROM tutoring_website_accounts WHERE id=:id";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":id" => $id);
+
+		$stmt->execute($data);
+
+		$line = $stmt->fetch();
+
+		return $line;
+	}
 
 	public function readAllTutoring(){
 		$stmt = $this->PDO->query("SELECT * FROM tutoring_website_tutoringList");
