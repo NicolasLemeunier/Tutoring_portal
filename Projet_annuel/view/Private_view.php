@@ -46,7 +46,6 @@ class Private_view extends View{
 
 	}
 
-
 }
 
 ?>

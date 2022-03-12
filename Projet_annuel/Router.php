@@ -101,7 +101,7 @@ class Router{
 					$this->controller->profil($_GET['login']);
 				break;
 				case "chat":
-					$this->controller->chat($id);
+					$this->controller->chat($id,$_POST);
 				break;
 
 			 default:

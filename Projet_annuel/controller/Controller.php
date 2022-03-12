@@ -202,8 +202,8 @@ class Controller{
 	}
 
 	public function chat($id){
-		$this->view->chatPage();
-
+		$data = $this->storage->readTutoringByID($id);
+		$this->view->chatPage($data);
 	}
 }
 

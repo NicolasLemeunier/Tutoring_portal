@@ -110,7 +110,7 @@ class View{
 		include("templates/Profil_page.php");
 		$this->content = ob_get_clean();
 	}
-	public function chatPage(){
+	public function chatPage($data){
 		$this->title = "Chat du tutorat";
 		ob_start();
 		include("templates/Chat_page.php");
