@@ -103,3 +103,8 @@ a {
 .logout { float:right; }
 
 .msgln { margin:0 0 2px 0; }
+
+
+
+a {color: crimson; font-weight: 600; transition: all 0.8s cubic-bezier(.14,1.36,.5,.5); display: inline-block; }
+a:hover { transform: scale(1.1) }
