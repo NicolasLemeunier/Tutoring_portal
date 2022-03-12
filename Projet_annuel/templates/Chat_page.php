@@ -2,7 +2,7 @@
 
 $deco = $this->router->getTutoringListPageURL();
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-$filename = "log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
+$filename = "logs/log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
 //var_dump($data);
 //echo "<h1>{$url}&logout=true</h1>"; //OK
 
