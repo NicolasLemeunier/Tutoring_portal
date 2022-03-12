@@ -2,7 +2,7 @@
 
 $deco = $this->router->getTutoringListPageURL();
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-$nameFile = "log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
+$filename = "log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
 //var_dump($data);
 //echo "<h1>{$url}&logout=true</h1>"; //OK
 
@@ -14,7 +14,7 @@ if(isset($_SESSION['user'])){
     $txt = "L'élève";
   }
   $login_message = "<div class='msgln'><span style='color:green' class='in-info'>{$txt} <b class='user-name-in'>". $_SESSION['user']->getLogin() ."</b> a rejoint le chat.</span><br></div>";
-  file_put_contents("log.html", $login_message, FILE_APPEND);
+  file_put_contents($filename, $login_message, FILE_APPEND);
 }
 ?>
 
@@ -26,9 +26,9 @@ if(isset($_SESSION['user'])){
      </div>
 
      <div id="chatbox"><?php
-        if(file_exists("log.html") && filesize("log.html") > 0){
-            $handle = fopen("log.html", "r");
-            $contents = fread($handle, filesize("log.html"));
+        if(file_exists($filename) && filesize($filename) > 0){
+            $handle = fopen($filename, "r");
+            $contents = fread($handle, filesize($filename));
             fclose($handle);
 
             echo $contents;
@@ -65,7 +65,7 @@ if(isset($_SESSION['user'])){
     //Marche sauf l'auto scroll
   		var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
   		$.ajax({
-  			url: "log.html",
+  			url: "<?php echo $filename;?>",
   			cache: false,
   			success: function(html){
   				$("#chatbox").html(html); //Insert chat log into the #chatbox div
@@ -92,7 +92,7 @@ setInterval (loadLog, 1000);//1000 = 1s
           $txt = "L'élève";
         }
        $logout_message = "<div class='msgln'><span style='color:red' class='left-info'>{$txt} <b class='user-name-left'>". $_SESSION['user']->getLogin() ."</b> a quitté le chat.</span><br></div>";
-       file_put_contents("log.html", $logout_message, FILE_APPEND | LOCK_EX);
+       file_put_contents($filename, $logout_message, FILE_APPEND | LOCK_EX);
 
        header("Location: $deco"); //Redirect the user
  }
@@ -102,7 +102,7 @@ setInterval (loadLog, 1000);//1000 = 1s
    if(isset($_POST['text']) && $_POST['text'] != ""){
      var_dump($_POST);
      $text = $_POST['text'];
-     $fp = fopen("log.html", 'a');
+     $fp = fopen($filename, 'a');
      fwrite($fp, "<div class='msgln'>(".date("H:i:s").") <b>".$_SESSION['user']->getLogin()."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>");
      fclose($fp);
    }
