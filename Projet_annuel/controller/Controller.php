@@ -109,8 +109,12 @@ class Controller{
 			}else if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student"){
 				$data = $this->storage->readStudentTutoring($login);
 			}
-			if(isset($_POST['value'])){
-				//on a une valeur pour la notation
+			if(isset($_POST['note'])){
+				if(isset($_POST['student'])){
+					//on note les élves
+				}else if(isset($_POST['tutor'])){
+					//on note le tuteur
+				}
 			}
 			$allTutoring = $this->storage->readAllTutoring();
 			$this->view->tutoringListPage($data,$allTutoring);

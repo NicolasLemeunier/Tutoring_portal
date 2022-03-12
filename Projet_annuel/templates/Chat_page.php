@@ -79,6 +79,9 @@ if(isset($_SESSION['user'])){
   					$("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
   				    }
   		  	},
+          error: function(){
+            window.location = '<?php echo "$url";?>&logout=true';
+          },
   		});
   	}
 
@@ -88,6 +91,9 @@ setInterval (loadLog, 1000);// update tous les : 1000 = 1s
 
  <?php
 
+if(!file_exists($filename)){
+  header("Location: $deco"); //Redirect the user
+}
 //OK
  if(isset($_GET['logout'])){
         //Simple exit message
