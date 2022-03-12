@@ -1,11 +1,11 @@
 <?php
 
 $deco = $this->router->getTutoringListPageURL();
-$ended = $this->router->getEndedTutoringURL($data['id']);
+//$ended = $this->router->getEndedTutoringURL($data['id']);
 
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $filename = "logs/log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
-var_dump($data);
+//var_dump($data);
 
 if(isset($_SESSION['user'])){
   // AFFICHE TROP DE FOIS 'a rejoint le chat'!!! A REGLER !!!!
@@ -16,7 +16,7 @@ if(isset($_SESSION['user'])){
     }else if($_SESSION['user']->getStatus()=="Student"){
       $txt = "L'élève";
     }
-    $login_message = "<div class='msgln'><span style='color:green' class='in-info'>{$txt} <b class='user-name-in'>". $_SESSION['user']->getLogin() ."</b> a rejoint le chat.</span><br></div>";
+    $login_message = "<div class='msgln'><span style='color:green' class='in-info'>{$txt} <a style='color:green' title='Voir profil de {$_SESSION['user']->getLogin()}' href=".$this->router->getProfilURL($_SESSION['user']->getID())."><b>".$_SESSION['user']->getLogin()."</b></a> a rejoint le chat</span><br></div>";
     file_put_contents($filename, $login_message, FILE_APPEND);
     //}
 }
@@ -54,7 +54,7 @@ if(isset($_SESSION['user'])){
  $(document).ready(function(){
    $("#exit").click(function(){
             var exit = confirm("Quitter le chat ?");
-            if(exit==true){window.location = '<?php echo "$ended";?>&logout=true';}
+            if(exit==true){window.location = '<?php echo "$url";?>&logout=true';}
       });
  });
  //If user submits the form
@@ -81,7 +81,8 @@ if(isset($_SESSION['user'])){
   				    }
   		  	},
           error: function(){
-            window.location = '<?php echo "$url";?>&end';
+            //quand le tuteur supprime le tutorat
+            window.location = '<?php echo "$url";?>&ended';
           },
   		});
   	}
@@ -100,13 +101,14 @@ setInterval (loadLog, 1000);// update tous les : 1000 = 1s
         }else{
           $txt = "L'élève";
         }
-       $logout_message = "<div class='msgln'><span style='color:red' class='left-info'>{$txt} <b class='user-name-left'>". $_SESSION['user']->getLogin() ."</b> a quitté le chat.</span><br></div>";
+        $logout_message = "<div class='msgln'><span style='color:red' class='left-info'>{$txt} <a title='Voir profil de {$_SESSION['user']->getLogin()}' href=".$this->router->getProfilURL($_SESSION['user']->getID())."><b class='user-name-left'>".$_SESSION['user']->getLogin()."</b></a> a quitté le chat</span><br></div>";
        file_put_contents($filename, $logout_message, FILE_APPEND | LOCK_EX);
        header("Location: $deco"); //Redirect the user
  }
 
 
  if(isset($_SESSION['user'])){
+
    if(isset($_POST['text']) && $_POST['text'] != ""){
      $text = $_POST['text'];
      $fp = fopen($filename, 'a');

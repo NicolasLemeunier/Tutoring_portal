@@ -104,11 +104,11 @@ class Router{
 					$this->controller->profil("",$_GET['login']);
 				break;
 				case "chat":
-					$this->controller->chat($id,$_POST);
-				break;
-				case "ended":
-				//les élèves n'ont pas besoin de noté les tuteurs
-					$this->controller->endedTutoring($id);//pour les élèves
+					if(isset($_GET['ended'])){
+						$this->controller->endedTutoring($id);//pour les élèves quand le tutorat est finis (notation)
+					}else{
+						$this->controller->chat($id,$_POST);
+					}
 				break;
 
 			 default:
