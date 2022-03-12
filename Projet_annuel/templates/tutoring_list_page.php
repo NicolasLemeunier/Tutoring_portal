@@ -37,7 +37,6 @@ echo"
 //var_dump($allTutoring);
 	foreach ($data as $key) {
 		$status = "started";
-		//$status = "unknown_ID";
 		if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() === "Student"){
 			if(isset($key['id_tutoring'])){
 				foreach ($allTutoring as $key2) {

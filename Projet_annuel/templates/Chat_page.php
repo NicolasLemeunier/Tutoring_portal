@@ -3,7 +3,7 @@
 $deco = $this->router->getTutoringListPageURL();
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $filename = "logs/log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
-//var_dump($data);
+var_dump($data);
 
 if(isset($_SESSION['user'])){
   // AFFICHE TROP DE FOIS 'a rejoint le chat'!!! A REGLER !!!!
@@ -51,7 +51,7 @@ if(isset($_SESSION['user'])){
 
  $(document).ready(function(){
    $("#exit").click(function(){
-            var exit = confirm("Are you sure you want to end the session?");
+            var exit = confirm("Quitter le chat ?");
             if(exit==true){window.location = '<?php echo "$url";?>&logout=true';}
       });
  });
@@ -106,9 +106,16 @@ setInterval (loadLog, 1000);// update tous les : 1000 = 1s
    if(isset($_POST['text']) && $_POST['text'] != ""){
      $text = $_POST['text'];
      $fp = fopen($filename, 'a');
-     fwrite($fp, "<div class='msgln'>(".date("H:i:s").") <a href=".$this->router->getProfilURL($_SESSION['user']->getID())."><b>".$_SESSION['user']->getLogin()."</b></a>: ".stripslashes(htmlspecialchars($text))."<br></div>");
+     fwrite($fp, "<div class='msgln'>(".date("H:i:s").") <a title='Voir profil de {$_SESSION['user']->getLogin()}' href=".$this->router->getProfilURL($_SESSION['user']->getID())."><b>".$_SESSION['user']->getLogin()."</b></a>: ".stripslashes(htmlspecialchars($text))."<br></div>");
      fclose($fp);
    }
+ }
+
+ if($data['status'] == "ended"){
+   //si le tuteur mets fin au tutorat il faut leur faire quitter la page et noté le tuteur
+   $end = $this->router->getEndTutoringURL($data['id']);
+   //header("Location : $go");
+   header("Location: $deco"); //Redirect the user
  }
 
 ?>

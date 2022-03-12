@@ -193,7 +193,9 @@ class Controller{
 		//un tuteur finit un tutorat
 		$ok = $this->storage->endTutoring($id);
 		if($ok){
-			$this->tutoringList($_SESSION['user']->getLogin());
+			$data = $this->storage->readRegistered($id);//tous les étudiants inscrit à ce tutorat pour les notés
+			$this->view->endedTutoring($data);
+			//$this->tutoringList($_SESSION['user']->getLogin());
 		}
 		//on supprime le fichier log (le chat se remets à 0)
 		$filename = "logs/log".$id.".html";
