@@ -203,6 +203,13 @@ class Controller{
 			unlink($filename);
 		}
 	}
+	public function endedTutoring($id){
+
+		$data = $this->storage->readRegistered($id);//tous les étudiants inscrit à ce tutorat pour les notés
+		$this->view->endedTutoring($data);
+			//$this->tutoringList($_SESSION['user']->getLogin());
+		
+	}
 
 	public function profil($id){
 		$data = $this->storage->readAccountsById($id);

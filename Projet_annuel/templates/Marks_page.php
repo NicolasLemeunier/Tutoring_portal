@@ -55,6 +55,14 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
                 <input type='hidden' name='note' id='note' value='0'>";
         }
       }
+      else if($status == "student"){
+        echo "{$studentRegistered[0]['tutor']}";
+        echo "<div class='stars'>
+                <i class='lar la-star' data-value='1'></i><i class='lar la-star' data-value='2'></i><i class='lar la-star' data-value='3'></i><i class='lar la-star' data-value='4'></i><i class='lar la-star' data-value='5'></i>
+              </div>
+              <input type='hidden' name='note' id='note' value='0'>";
+            }
+      }
 
    ?>
 

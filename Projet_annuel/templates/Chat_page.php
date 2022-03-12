@@ -110,12 +110,12 @@ setInterval (loadLog, 1000);// update tous les : 1000 = 1s
      fclose($fp);
    }
  }
-
+//la data ne va jamais changé alors il faut faire une recherche dans la base
  if($data['status'] == "ended"){
    //si le tuteur mets fin au tutorat il faut leur faire quitter la page et noté le tuteur
-   $end = $this->router->getEndTutoringURL($data['id']);
+   $end = $this->router->getEndedTutoringURL($data['id']);
    //header("Location : $go");
-   header("Location: $deco"); //Redirect the user
+   header("Location: $end"); //Redirect the user
  }
 
 ?>

@@ -103,6 +103,9 @@ class Router{
 				case "chat":
 					$this->controller->chat($id,$_POST);
 				break;
+				case "ended":
+					$this->controller->endedTutoring($id);//pour les élèves
+				break;
 
 			 default:
 				// L'internaute a demandé une action non prévue.
@@ -221,6 +224,10 @@ class Router{
 	public function getEndTutoringURL($id2){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=end&id=$id2";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=end&id=$id2";
+	}
+	public function getEndedTutoringURL($id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=ended&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=ended&id=$id2";
 	}
 	public function getStartTutoringURL($id2){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=start&id=$id2";
