@@ -2,12 +2,12 @@
 
 $nbEtudiantsInscrits = count($registered);
 $placesRestantes = $data['nbMaxStudents']-$nbEtudiantsInscrits;
-
+//var_dump($data);
 echo "<h2>Informations sur le tutorat : </h2>";
 
 echo "<h4>Catégorie :</h4> {$data['category']} </br>";
 
-echo "<h4>Tuteur :</h4> {$data['tutor']} </br>";
+echo "<h4>Tuteur :</h4> <a href='{$this->router->getProfilURLLogin($data['tutor'])}' title='Lien du profil'>{$data['tutor']}</a></br>";
 
 echo "<h4>Places restantes :</h4> {$nbEtudiantsInscrits}(étudiants inscrits) / {$data['nbMaxStudents']}(nombre maximum de places) => {$placesRestantes} places disponibles</br>";
 

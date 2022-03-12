@@ -220,12 +220,16 @@ class Controller{
 
 	}
 
-	public function profil($id){
-		$data = $this->storage->readAccountsById($id);
-		$marks = $this->storage->readMarksByID($id);
-		$this->view->profilPage($data,$marks);
+	public function profil($id,$login){
+		if($id == ""){
+			$data = $this->storage->readAccountsByLogin($login);
+			$marks = $this->storage->readMarksByLogin($login);
+		}else if($login == ""){
+			$data = $this->storage->readAccountsById($id);
+			$marks = $this->storage->readMarksByID($id);
 	}
-
+	$this->view->profilPage($data,$marks);
+}
 	public function chat($id){
 		$data = $this->storage->readTutoringByID($id);
 		$this->view->chatPage($data);

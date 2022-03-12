@@ -311,6 +311,19 @@ class Storage{
 
 		return $lines;
 	}
+	public function readMarksByLogin($login){
+		$sql = "SELECT * FROM tutoring_website_marks WHERE login=:login";
+
+		$stmt = $this->PDO->prepare($sql);
+
+		$data = array(":login" => $login);
+
+		$stmt->execute($data);
+
+		$lines = $stmt->fetchAll();
+
+		return $lines;
+	}
 
 }
 

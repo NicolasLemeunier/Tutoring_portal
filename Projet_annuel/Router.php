@@ -98,12 +98,16 @@ class Router{
 					$this->controller->endTutoring($id);
 				break;
 				case "profil":
-					$this->controller->profil($id);
+					$this->controller->profil($id,"");
+				break;
+				case "profilViaLogin":
+					$this->controller->profil("",$_GET['login']);
 				break;
 				case "chat":
 					$this->controller->chat($id,$_POST);
 				break;
 				case "ended":
+				//les élèves n'ont pas besoin de noté les tuteurs
 					$this->controller->endedTutoring($id);//pour les élèves
 				break;
 
@@ -240,6 +244,10 @@ class Router{
 	public function getChatURL($id2){
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=chat&id=$id2";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=chat&id=$id2";
+	}
+	public function getProfilURLLogin($login){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=profilViaLogin&login=$login";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=profilViaLogin&login=$login";
 	}
 
 

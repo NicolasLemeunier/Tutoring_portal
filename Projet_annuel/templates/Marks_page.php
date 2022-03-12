@@ -48,6 +48,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
       if($status == "tutor"){
         foreach ($studentRegistered as $key => $student) {
           //marche que si ya un seul étudiant
+          /*
           echo "<form action={$this->router->getTutoringListPageURL()} method=\"post\">
                     <div class='stars'>
                     <a title='Voir profil de {$student['student']}' href=".$this->router->getProfilURL($student['student'])."><b>".$student['student']."</b></a>
@@ -57,7 +58,7 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
                   <input type='hidden' name='student' id='student' value='{$student['student']}'>
                   <button type=\"submit\">Valider</button>
                 </form>";
-
+                  */
         }
       }
       else if($status == "student"){
