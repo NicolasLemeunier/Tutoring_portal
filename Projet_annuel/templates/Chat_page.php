@@ -2,8 +2,20 @@
 
 $deco = $this->router->getTutoringListPageURL();
 $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+$nameFile = "log".$data['id'].".html"; // chaque tutorat à son fichier différent(pour differencer les chats)
 //var_dump($data);
 //echo "<h1>{$url}&logout=true</h1>"; //OK
+
+if(isset($_SESSION['user'])){
+  //Simple entry message
+  if($_SESSION['user']->getStatus()=="Tutor"){
+    $txt = "Le tuteur";
+  }else{
+    $txt = "L'élève";
+  }
+  $login_message = "<div class='msgln'><span style='color:green' class='in-info'>{$txt} <b class='user-name-in'>". $_SESSION['user']->getLogin() ."</b> a rejoint le chat.</span><br></div>";
+  file_put_contents("log.html", $login_message, FILE_APPEND);
+}
 ?>
 
  <div id="wrapper">
@@ -41,14 +53,16 @@ $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
  });
  //If user submits the form
 	$("#submitmsg").click(function(){
+      // C'EST LA QUE ÇA BUGG
   		var clientmsg = $("#usermsg").val(); //on prends la valeur du champs
-  		$.post("templates/Chat_page_post.php", {text: clientmsg});
+  		$.post("", {text: clientmsg});
   		$("#usermsg").attr("value", ""); //on remets la valeur du champs à vide
   		return false;
 	});
 
   //Load the file containing the chat log and update the chat
   function loadLog(){
+    //Marche sauf l'auto scroll
   		var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
   		$.ajax({
   			url: "log.html",
@@ -64,7 +78,7 @@ $url =  "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
   		  	},
   		});
   	}
-setInterval (loadLog, 2000);//1000 = 1s
+setInterval (loadLog, 1000);//1000 = 1s
  </script>
 
  <?php
@@ -72,15 +86,26 @@ setInterval (loadLog, 2000);//1000 = 1s
 //OK
  if(isset($_GET['logout'])){
         //Simple exit message
-        if($_SESSION['user']->getStatus()=="tutor"){
+        if($_SESSION['user']->getStatus()=="Tutor"){
           $txt = "Le tuteur";
         }else{
           $txt = "L'élève";
         }
-       $logout_message = "<div class='msgln'><span class='left-info'>{$txt} <b class='user-name-left'>". $_SESSION['user']->getLogin() ."</b> a quitté le chat.</span><br></div>";
+       $logout_message = "<div class='msgln'><span style='color:red' class='left-info'>{$txt} <b class='user-name-left'>". $_SESSION['user']->getLogin() ."</b> a quitté le chat.</span><br></div>";
        file_put_contents("log.html", $logout_message, FILE_APPEND | LOCK_EX);
 
        header("Location: $deco"); //Redirect the user
+ }
+
+
+ if(isset($_SESSION['user'])){
+   if(isset($_POST['text']) && $_POST['text'] != ""){
+     var_dump($_POST);
+     $text = $_POST['text'];
+     $fp = fopen("log.html", 'a');
+     fwrite($fp, "<div class='msgln'>(".date("H:i:s").") <b>".$_SESSION['user']->getLogin()."</b>: ".stripslashes(htmlspecialchars($text))."<br></div>");
+     fclose($fp);
+   }
  }
 
 ?>
