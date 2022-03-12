@@ -35,27 +35,24 @@ if(isset($_SESSION['user']) && $_SESSION['user']->getStatus() == "Tutor"){
       }
    });
 });
+
+
+
 </script>
 
 
 
 <div id="dialog" title="<?php echo $titre; ?>">
 <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+<script src="scripts.js"></script>
   <?php
       if($status == "tutor"){
         foreach ($studentRegistered as $key => $student) {
           echo "{$student['student']}";
           echo "<div class='stars'>
-              		<i class='lar la-star' data-value='1'></i>
-              		<i class='lar la-star' data-value='2'></i>
-              		<i class='lar la-star' data-value='3'></i>
-              		<i class='lar la-star' data-value='4'></i>
-              		<i class='lar la-star' data-value='5'></i>
-                </div>";
-        }
-      }else{
-        foreach ($studentRegistered as $key => $student) {
-          echo "{$student['tutor']}, note ?";
+              		<i class='lar la-star' data-value='1'></i><i class='lar la-star' data-value='2'></i><i class='lar la-star' data-value='3'></i><i class='lar la-star' data-value='4'></i><i class='lar la-star' data-value='5'></i>
+                </div>
+                <input type='hidden' name='note' id='note' value='0'>";
         }
       }
 
