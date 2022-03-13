@@ -65,7 +65,6 @@ class Controller{
 
 	public function research(string $word){
 		$tutoringList = $this->storage->readAllTutoring();
-
 		$this->view->welcomePage($this->storage->research($word));
 	}
 

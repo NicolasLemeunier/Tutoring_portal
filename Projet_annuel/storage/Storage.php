@@ -140,10 +140,11 @@ class Storage{
 
 
 	public function research(string $word){
-		$stmt = $this->PDO->query("SELECT category, tutor FROM tutoring_website_tutoringList WHERE category LIKE \"$word%\"");
+
+		$stmt = $this->PDO->query("SELECT * FROM tutoring_website_tutoringList WHERE category LIKE \"$word%\"");
 
 		$lines = $stmt->fetchAll();
-
+	
 		return $lines;
 	}
 

@@ -22,7 +22,7 @@ class View{
 		$categories_list = array();
 
 		$tables = "";
-
+		
 		foreach($data as $tu){
 			if(isset($tu['status']) && $tu['status'] != "ended"){
 			if(array_key_exists($tu['category'], $categories_list))
