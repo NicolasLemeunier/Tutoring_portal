@@ -31,7 +31,7 @@ class Controller{
 
 	public function accountCreation(array $data){
 
-		if(empty(trim(htmlspecialchars($data['Login']))) || empty(trim(htmlspecialchars($data['Password'])))){
+		if(empty(trim(htmlspecialchars($data['Login']))) || empty(trim(htmlspecialchars($data['Password']))) || empty(trim(htmlspecialchars($data['Email'])))){
 			$this->view->accountCreationPage();
 			return false;
 		}
@@ -74,6 +74,10 @@ class Controller{
 	}
 	public function adminPageTutoring(){
 		$this->view->adminPageTutoring($this->storage->readAllTutoring());
+	}
+	public function adminPageManagement($id){
+		$data = $this->storage->readRegistered($id);
+		$this->view->adminPageManagement($data,$id);
 	}
 
 	public function accountDeletion(String $login){
@@ -188,6 +192,10 @@ class Controller{
 		if($ok){
 			$this->tutoringList($_SESSION['user']->getLogin());
 		}
+	}
+	public function leaveTutoringByAdmin($id,$login){
+		$this->storage->deleteRegisteredStudent($id,$login);
+		$this->adminPageManagement($id);
 	}
 
 	public function startTutoring($id){

@@ -89,7 +89,10 @@ class Router{
 					$this->controller->adminPageTutoring();
 				break;
 				case "leaveTutoring":
-					$this->controller->leaveTutoring($id);
+						$this->controller->leaveTutoring($id);
+				break;
+				case "leaveTutoringByAdmin":
+						$this->controller->leaveTutoringByAdmin($id,$_GET['login']);
 				break;
 				case "start":
 					$this->controller->startTutoring($id);
@@ -111,6 +114,10 @@ class Router{
 						$this->controller->chat($id,$_POST);
 					}
 				break;
+				case "management":
+					$this->controller->adminPageManagement($id);
+				break;
+
 
 			 default:
 				// L'internaute a demandé une action non prévue.
@@ -250,7 +257,14 @@ class Router{
 		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=profilViaLogin&login=$login";
 		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=profilViaLogin&login=$login";
 	}
-
+	public function getParticipantsManagementURL($id2){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=management&id=$id2";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=management&id=$id2";
+	}
+	public function getLeaveTutoringByAdminURL($id1,$login){
+		//return "https://dev-21914622.users.info.unicaen.fr/Projet_annuel/index.php?action=leaveTutoringByAdmin&id=$id1&login=$login";
+		return "https://dev-21904876.users.info.unicaen.fr/tutoratProjet/projet-annuel-camara-grimault-frapier-lemeunier/Projet_annuel/index.php?action=leaveTutoringByAdmin&id=$id1&login=$login";
+	}
 
 	public function POSTredirect($url){
 		header("Location: " . $url, true, 303);

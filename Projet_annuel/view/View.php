@@ -122,6 +122,12 @@ class View{
 		include("templates/Marks_page.php");
 		$this->content = ob_get_clean();
 	}
+	public function adminPageManagement($data,$id){
+		$this->title = "Gérer les participants";
+		ob_start();
+		include("templates/Admin_management_page.php");
+		$this->content = ob_get_clean();
+	}
 
 	public function success(){
 		$this->router->POSTredirect($this->router->getWelcomePageURL(), "Success");
